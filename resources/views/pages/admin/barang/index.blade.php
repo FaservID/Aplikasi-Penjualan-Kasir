@@ -15,99 +15,99 @@
     </div>
 </div>
 
-@if(session('success'))
+@if(session('message'))
 <div class="alert alert-success alert-dismissible" role="alert">
-    {{session('success')}}
+    {{session('message')}}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
 
-@if(session('error'))
-<div class="alert alert-danger alert-dismissible" role="alert">
-    {{session('error')}}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-@endif
 
-{{-- @forelse($letters as $letter)
-<div class="col-12">
+<div class="col-md-12">
     <div class="card mb-4">
-        <div class="container py-4">
-            <div class="d-flex justify-content-between flex-column flex-sm-row">
-                <div>
-                    <div class="fw-bold display-6">{{$letter->reference_number}}</div>
-                    <div><span class="fw-bold">{{$letter->from}}</span> | Nomor Agenda : {{$letter->agenda_number}} | {{$letter->classification->type}} </div>
-                </div>
-                <div class="d-flex justify-content-between gap-2">
-                    <div class="d-flex flex-column">
-                        <div style="font-size: 12px">Tanggal Surat </div>
-                        <div style="font-size: 15px">{{\Carbon\Carbon::parse($letter->letter_date)->isoFormat('dddd, D MMMM YYYY')}}</div>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bx bx-dots-vertical-rounded"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{{route('admin.incomingTransactionEdit', $letter->id)}}">Edit</a></li>
-                            <li><a class="dropdown-item" href="{{route('admin.incomingTransactionDetail', $letter->id)}}">Lihat Detail</a></li>
-                            <li>
-                                <form method="POST" action="{{route('admin.incomingTransactionDestroy', $letter->id)}}">
-                                    @csrf
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn dropdown-item show-alert-delete-box" data-toggle="tooltip" title='Delete'>Delete</button>
-                                </form>
+        <div class="card-header">
+            List Kategori
+        </div>
+        <div class="card-body">
+            <table id="example" class="display table table-bordered py-3 table-responsive">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nama</th>
+                        <th>Tipe</th>
+                        <th>Ukuran</th>
+                        <th>Harga</th>
+                        <th>In Stock</th>
+                        <th>Stock Terjual</th>
+                        <th>Kategori</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i=1; ?>
+                    @forelse ($items as $item)
+                    <tr>
+                        <td>{{$i++}}</td>
+                        <td>{{$item->nama}}</td>
+                        <td>{{$item->tipe}}</td>
+                        <td>{{$item->panjang}} x {{$item->lebar}}</td>
+                        <td>{{$item->harga}}</td>
+                        <td>{{$item->in_stock}}</td>
+                        <td>{{$item->sell_stock}}</td>
+                        <td>{{$item->Kategori->nama}}</td>
+                        <td class="d-flex justify-content-center">
+                            <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a href="{{route('barang.show', $item->slug)}}" class="dropdown-item"><i class='bx bx-search-alt'></i> Detail</a>
+                                    <a class="dropdown-item" href="{{route('barang.edit', $item->slug)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                    <form method="POST" action="{{route('barang.destroy', $item->slug)}}">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="submit" class="btn dropdown-item show-alert-delete-box" data-toggle="tooltip" title='Delete'><i class="bx bx-trash me-1"></i> Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="9" class="text-center">
+                            Data Kosong
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Nama</th>
+                        <th>Tipe</th>
+                        <th>Ukuran</th>
+                        <th>Harga</th>
+                        <th>In Stock</th>
+                        <th>Stock Terjual</th>
+                        <th>Kategori</th>
+                        <th>Aksi</th>
+                    </tr>
+                </tfoot>
+            </table>
 
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-md-11">
-                        {{$letter->description}}
-                        <div class="py-2"><span class="text-muted">Keterangan</span> : {{$letter->note}} </div>
-                    </div>
-                    <div class="col-md-1">
-                        @foreach ($letter->attachments as $attachment)
-                        @if($attachment->extension === 'pdf')
-                        <div class="py-2"><a href="{{asset('attachments')}}/{{$attachment->filename}}" target="_blank"><i class='bx bxs-file-pdf text-primary' style="font-size: 40px"></i></a></div>
-                        @elseif($attachment->extension === 'jpg')
-                        <div class="py-2"><a href="{{asset('attachments')}}/{{$attachment->filename}}" target="_blank"><i class='bx bxs-file-jpg text-primary' style="font-size: 40px"></i></a></div>
-                        @elseif($attachment->extension === 'jpeg')
-                        <div class="py-2"><a href="{{asset('attachments')}}/{{$attachment->filename}}" target="_blank"><i class='bx bxs-file-jpg text-primary' style="font-size: 40px"></i></a></div>
-                        @elseif($attachment->extension === 'png')
-                        <div class="py-2"><a href="{{asset('attachments')}}/{{$attachment->filename}}" target="_blank"><i class='bx bxs-file-png text-primary' style="font-size: 40px"></i></a></div>
-                        @elseif($attachment->extension === 'docx')
-                        <div class="py-2"><a href="{{asset('attachments')}}/{{$attachment->filename}}" target="_blank"><i class='bx bxs-file-doc text-primary' style="font-size: 40px"></i></a></div>
-                        @elseif($attachment->extension === 'doc')
-                        <div class="py-2"><a href="{{asset('attachments')}}/{{$attachment->filename}}" target="_blank"><i class='bx bxs-file-doc text-primary' style="font-size: 40px"></i></a></div>
-                        @endif
-                        @endforeach
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
-@empty
-<div class="col-12">
-    <div class="card mb-4">
-        <div class="container py-4">
-            <div class="text-center text-muted">Data Kosong</div>
-        </div>
-    </div>
-</div>
-@endforelse --}}
-
-<!-- Basic Pagination -->
-{{-- <div class="col-12">
-    {!! $letters->withQueryString()->links('pagination::bootstrap-5') !!}
-</div> --}}
 @endsection
 
+@push('custom-scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+
+</script>
+@endpush
 @push('custom-scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>

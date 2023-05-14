@@ -13,16 +13,17 @@ return new class extends Migration
     {
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
-            $table->string('nama',100);
-            $table->string('tipe',100);
-            $table->string('panjang',100);
+            $table->string('nama', 100);
+            $table->string('tipe', 100);
+            $table->string('panjang', 100);
             $table->string('lebar', 100);
             $table->string('slug', 100);
-            $table->string('harga_beli', 100);
-            $table->string('harga_jual', 100);
+            $table->string('harga', 100);
             $table->string('in_stock', 100)->nullable();
+            $table->string('sell_stock', 100)->nullable();
+            $table->text('keterangan')->nullable();
+            $table->string('foto', 100);
             $table->foreignId('kategori_id')->constrained('kategori')->cascadeOnDelete();
-            $table->foreignId('stock_id')->constrained('stocks')->cascadeOnDelete();
             $table->timestamps();
         });
     }

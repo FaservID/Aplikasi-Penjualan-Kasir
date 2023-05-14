@@ -35,7 +35,7 @@
                 </li>
                 <!-- Layouts -->
 
-                <li class="menu-item {{ request()->is('admin/barang*') ? 'active open' : ''}} {{ request()->is('admin/kategori*') ? 'active open' : ''}}">
+                <li class="menu-item {{ request()->is('admin/barang*') ? 'active open' : ''}} {{ request()->is('admin/kategori*') ? 'active open' : ''}} {{ request()->is('admin/stock*') ? 'active open' : ''}}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-box"></i>
                         <div data-i18n="master">Master Barang</div>
@@ -44,12 +44,17 @@
                     <ul class="menu-sub ">
                         <li class="menu-item {{ request()->is('admin/barang*') ? 'active' : ''}}">
                             <a href="{{route('barang.index')}}" class="menu-link">
-                                <div data-i18n="barang">barang</div>
+                                <div data-i18n="barang">Barang</div>
                             </a>
                         </li>
                         <li class="menu-item {{ request()->is('admin/kategori*') ? 'active' : ''}}">
                             <a href="{{route('kategori.index')}}" class="menu-link">
-                                <div data-i18n="kategori">kategori</div>
+                                <div data-i18n="kategori">Kategori</div>
+                            </a>
+                        </li>
+                        <li class="menu-item {{ request()->is('admin/stock*') ? 'active' : ''}}">
+                            <a href="{{route('stock.index')}}" class="menu-link">
+                                <div data-i18n="stock">Stock</div>
                             </a>
                         </li>
                     </ul>

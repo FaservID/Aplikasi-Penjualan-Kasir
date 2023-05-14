@@ -46,6 +46,9 @@
       rel="stylesheet"
     />
 
+    <!-- SELECT2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     {{-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.css"> --}}
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="{{asset('sneat/assets/vendor/fonts/boxicons.css')}}" />
@@ -118,6 +121,10 @@
     <script src="{{asset('sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
     <script src="{{asset('sneat/assets/vendor/js/menu.js')}}"></script>
     <!-- endbuild -->
+
+    <!-- SELECT 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
     <!-- Vendors JS -->
     <script src="{{asset('sneat/assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>

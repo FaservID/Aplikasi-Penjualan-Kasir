@@ -1,0 +1,181 @@
+@extends('layouts.main')
+@section('title', 'Stock')
+
+@push('custom-css')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css" rel="stylesheet">
+@endpush
+
+@section('content')
+
+<div class="d-flex justify-content-between flex-column flex-sm-row">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Master Barang /</span> Stock</h4>
+    <div class="py-3">
+        <a href="{{route('barang.create')}}" class="btn btn-primary float-right">Tambah Stock</a>
+    </div>
+</div>
+
+@if(session('message'))
+<div class="alert alert-success alert-dismissible" role="alert">
+    {{session('message')}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    List Kategori
+                </div>
+                <div class="card-body">
+                    <table id="example" class="display table table-bordered py-3">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nama Barang</th>
+                                <th>Harga Beli</th>
+                                <th>Jumlah</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $i=1; ?>
+                            @foreach ($stocks as $stock)
+                            <tr>
+                                <td>{{$i++}}</td>
+                                <td>{{$stock->barang->nama}}</td>
+                                <td>{{$stock->harga_beli}}</td>
+                                <td>{{$stock->jumlah}}</td>
+                                <td class="d-flex justify-content-center">
+                                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editData{{$stock->id}}" data-target="#editData{{$stock->id}}">
+                                        Edit
+                                    </button>
+                                    |
+                                    <form method="POST" action="{{route('stock.destroy', $stock->id)}}">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="submit" class="btn btn-danger btn-sm show-alert-delete-box" data-toggle="tooltip" title='Delete'>Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>#</th>
+                                <th>Nama Barang</th>
+                                <th>Harga Beli</th>
+                                <th>Jumlah</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- Tambah Stock -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    Tambah Stock
+                </div>
+                <div class="card-body">
+                    <form action="{{route('stock.store')}}" method="POST">
+                        @csrf
+                        @method('POST')
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="defaultFormControlInput" class="form-label">Nama Barang</label>
+                                {{-- <input type="text" value="{{ old('nama') }}" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" placeholder="John Doe" aria-describedby="defaultFormControlHelp" /> --}}
+                                <select class="select2 form-control form-select" name="barang_id">
+                                    <option value="" selected disabled>-- Pilih Barang --</option>
+                                    @foreach ($barang as $item)
+                                    <option value="{{$item->id}}">{{$item->nama}}</option>
+                                    @endforeach
+                                </select>
+                                @error('nama')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label for="defaultFormControlInput" class="form-label">Harga Beli</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                                    <input type="text" value="{{ old('harga_beli') }}" class="form-control @error('harga_beli') is-invalid @enderror" name="harga_beli" id="harga_beli" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />
+                                    @error('harga_beli')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label for="defaultFormControlInput" class="form-label">Jumlah</label>
+                                <input type="text" value="{{ old('jumlah') }}" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah" id="jumlah" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />
+                                @error('jumlah')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="mt-3 text-end">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- END TAMBAH STOCK -->
+    </div>
+</div>
+@endsection
+
+@push('custom-scripts')
+<script type="text/javascript">
+    $('.select2').select2({
+        placeholder: '-- Pilih Barang --'
+    });
+
+</script>
+@endpush
+
+@push('custom-scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script type="text/javascript">
+    $('.show-alert-delete-box').click(function(event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        swal({
+            title: "Apakah Anda Yakin Ingin Menghapus Data ini?"
+            , text: "Jika ini terhapus, data akan hilang selamanya"
+            , icon: "warning"
+            , type: "warning"
+            , buttons: ["Cancel", "Yes!"]
+            , confirmButtonColor: '#3085d6'
+            , cancelButtonColor: '#d33'
+            , confirmButtonText: 'Yes, delete it!'
+        }).then((willDelete) => {
+            if (willDelete) {
+                form.submit();
+            }
+        });
+    });
+
+</script>
+@endpush
