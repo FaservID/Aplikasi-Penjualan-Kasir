@@ -18,4 +18,8 @@ class Stock extends Model
     {
         return $this->belongsTo(Barang::class, 'barang_id', 'id');
     }
+
+    public function getRouteKeyName() {
+        return 'id';
+    }
 }

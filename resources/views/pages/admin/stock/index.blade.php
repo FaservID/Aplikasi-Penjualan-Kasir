@@ -10,9 +10,6 @@
 
 <div class="d-flex justify-content-between flex-column flex-sm-row">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Master Barang /</span> Stock</h4>
-    <div class="py-3">
-        <a href="{{route('barang.create')}}" class="btn btn-primary float-right">Tambah Stock</a>
-    </div>
 </div>
 
 @if(session('message'))
@@ -38,6 +35,7 @@
                                 <th>Nama Barang</th>
                                 <th>Harga Beli</th>
                                 <th>Jumlah</th>
+                                <th>Tanggal</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -46,19 +44,26 @@
                             @foreach ($stocks as $stock)
                             <tr>
                                 <td>{{$i++}}</td>
-                                <td>{{$stock->barang->nama}}</td>
-                                <td>{{$stock->harga_beli}}</td>
+                                <td><a href="barang/{{$stock->barang->slug}}">{{$stock->barang->nama}}</a></td>
+                                <td>Rp. {{$stock->harga_beli}}</td>
                                 <td>{{$stock->jumlah}}</td>
+                                <td>{{\Carbon\Carbon::parse($stock->created_at)->isoFormat('D MMMM YYYY')}}</td>
                                 <td class="d-flex justify-content-center">
-                                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editData{{$stock->id}}" data-target="#editData{{$stock->id}}">
-                                        Edit
-                                    </button>
-                                    |
-                                    <form method="POST" action="{{route('stock.destroy', $stock->id)}}">
-                                        @csrf
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button type="submit" class="btn btn-danger btn-sm show-alert-delete-box" data-toggle="tooltip" title='Delete'>Delete</button>
-                                    </form>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editData{{$stock->id}}" data-target="#editData{{$stock->id}}">
+                                                <i class="bx bx-edit-alt me-1"></i> Edit
+                                            </button>
+                                            <form method="POST" action="{{route('stock.destroy', $stock->id)}}">
+                                                @csrf
+                                                <input name="_method" type="hidden" value="DELETE">
+                                                <button type="submit" class="btn dropdown-item show-alert-delete-box" data-toggle="tooltip" title='Delete'><i class="bx bx-trash me-1"></i> Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach
@@ -69,6 +74,7 @@
                                 <th>Nama Barang</th>
                                 <th>Harga Beli</th>
                                 <th>Jumlah</th>
+                                <th>Tanggal</th>
                                 <th>Aksi</th>
                             </tr>
                         </tfoot>
@@ -78,6 +84,63 @@
             </div>
 
         </div>
+
+        <!-- Button trigger modal -->
+
+        @foreach ($stocks as $stock)
+
+        <div class="modal fade" id="editData{{$stock->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="{{route('stock.update', $stock->id)}}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Stock</h1>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="defaultFormControlInput" class="form-label">Barang ID</label>
+                                        <input type="hidden" value="{{$stock->barang->id}}" name="barang_id">
+                                        <div class="form-control">{{$stock->barang->nama}}</div>
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                        <label for="defaultFormControlInput" class="form-label">Harga Beli</label>
+                                        <input type="text" value="{{$stock->harga_beli}}" class="form-control @error('harga_beli') is-invalid @enderror" name="harga_beli" id="harga_beli" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />
+                                        @error('harga_beli')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                        <label for="defaultFormControlInput" class="form-label">Jumlah</label>
+                                        <input type="number" value="{{$stock->jumlah}}" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah" id="jumlah" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />
+                                        @error('jumlah')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Ubah Data</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endforeach
+
+        <!-- Modal -->
+
+
         <!-- Tambah Stock -->
         <div class="col-md-4">
             <div class="card mb-4">
@@ -122,7 +185,7 @@
                         <div class="row mt-3">
                             <div class="col-md-12">
                                 <label for="defaultFormControlInput" class="form-label">Jumlah</label>
-                                <input type="text" value="{{ old('jumlah') }}" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah" id="jumlah" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />
+                                <input type="number" value="{{ old('jumlah') }}" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah" id="jumlah" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />
                                 @error('jumlah')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{$message}}</strong>
@@ -153,6 +216,14 @@
 </script>
 @endpush
 
+@push('custom-scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+
+</script>
+@endpush
 @push('custom-scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>

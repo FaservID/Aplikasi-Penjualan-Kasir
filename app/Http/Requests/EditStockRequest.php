@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateStockRequest extends FormRequest
+class EditStockRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,6 @@ class CreateStockRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'barang_id' => 'required',
             'harga_beli' => 'required',
             'jumlah' => 'required'
         ];
