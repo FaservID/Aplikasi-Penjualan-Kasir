@@ -63,16 +63,10 @@ class StockController extends Controller
     public function update(EditStockRequest $request, Stock $stock)
     {
         $currQty = $stock->jumlah;
-        // dd($currQty);
         $stock->update($request->validated());
-        $barang = Barang::where('id', $request->barang_id);
-        $getFirstData = $barang->first();
-        $currQty >= $request->jumlah ?
-            $getStock = $getFirstData->in_stock - $request->jumlah :
-            $getStock = $getFirstData->in_stock + $request->jumlah;
-        // $getStock = $getFirstData->in_stock + $request->jumlah;
-        $barang->update(['in_stock' => $getStock]);
-        return redirect()->route('stock.index')->with('message', 'Berhasil Menambahkan Stock');
+        $tempVal = ($stock->barang->in_stock - $currQty) + $request->jumlah;
+        $stock->barang->update(['in_stock' => $tempVal]);
+        return redirect()->route('stock.index')->with('message', 'Berhasil Mengubah Stock');
     }
 
     /**
@@ -88,7 +82,5 @@ class StockController extends Controller
         $getStock = $getFirstData->in_stock - $currQty;
         $barang->update(['in_stock' => $getStock]);
         return redirect()->route('stock.index')->with('message', 'Berhasil Menghapus Stock');
-
-        
     }
 }
