@@ -43,8 +43,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function managerHome(): View
+    public function pimpinanHome(): View
     {
-        return view('managerHome');
+        return view('pages.pimpinan.index');
     }
 }

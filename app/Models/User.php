@@ -18,6 +18,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    protected $table = 'users';
+
     protected $fillable = [
         'name',
         'email',
@@ -50,5 +53,10 @@ class User extends Authenticatable
         return new Attribute(
             get: fn ($value) =>  ["user", "admin", "pimpinan"][$value],
         );
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'id';
     }
 }

@@ -80,27 +80,6 @@
                     </ul>
                 </li>
 
-                {{-- <li class="menu-item">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bx-book"></i>
-                        <div data-i18n="buku agenda">Buku Agenda</div>
-                    </a>
-
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <div data-i18n="Surat Masuk">Surat Masuk</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <div data-i18n="Surat Keluar">Surat Keluar</div>
-                            </a>
-                        </li>
-                    </ul>
-                </li> --}}
-
-                <!-- END Menu Utama -->
 
                 <!-- Menu Lainnya -->
                 <li class="menu-header small text-uppercase">
@@ -126,20 +105,38 @@
                 </li>
 
                 <li class="menu-item">
-                    <a href="#" class="menu-link">
+                    <a href="{{route('konsumen.index')}}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-group"></i>
                         <div data-i18n="Analytics">Konsumen</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-user-circle"></i>
-                        <div data-i18n="Analytics">Profle</div>
                     </a>
                 </li>
                 <!-- END Menu Lainnya -->
             </ul>
 
+            @elseif(auth()->user()->type === "pimpinan")
+            <ul class="menu-inner py-1">
+                <li class="menu-header small text-uppercase">
+                    <span class="menu-header-text">Menu Utama</span>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxs-report"></i>
+                        <div data-i18n="laporan">Laporan</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="#" class="menu-link">
+                                <div data-i18n="laporan penjualan">Laporan Penjualan</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="menu-link">
+                                <div data-i18n="laporan stock">Laporan Stock</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
             @endif
 
 

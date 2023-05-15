@@ -3,6 +3,8 @@
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KonsumenController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +28,10 @@ Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
   
+Route::resource('profile', ProfileController::class);
+
+Route::post('/profile/reset-password', [ProfileController::class, 'reset'])->name('profile.reset');
+
 /*------------------------------------------
 --------------------------------------------
 All Normal Users Routes List
@@ -50,6 +56,9 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
     Route::resource('kategori', KategoriController::class);
 
     Route::resource('stock', StockController::class);
+
+    Route::resource('konsumen', KonsumenController::class);
+
 });
   
 /*------------------------------------------
@@ -59,5 +68,5 @@ All Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:pimpinan'])->group(function () {
   
-    Route::get('/pimpinan/home', [HomeController::class, 'pimpinanHome'])->name('manager.home');
+    Route::get('/pimpinan/home', [HomeController::class, 'pimpinanHome'])->name('pimpinan.home');
 });

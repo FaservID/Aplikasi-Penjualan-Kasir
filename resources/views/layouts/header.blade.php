@@ -55,22 +55,10 @@
                                   <div class="dropdown-divider"></div>
                               </li>
                               <li>
-                                  {{-- @if(auth()->user()->type === "admin")
-                                  <a class="dropdown-item" href="{{route('admin.profileIndex')}}">
+                                  <a class="dropdown-item" href="{{route('profile.index')}}">
                                       <i class="bx bx-user me-2"></i>
                                       <span class="align-middle">My Profile</span>
                                   </a>
-                                  @elseif(auth()->user()->type === "kabid")
-                                  <a class="dropdown-item" href="{{route('kabid.profileIndex')}}">
-                                      <i class="bx bx-user me-2"></i>
-                                      <span class="align-middle">My Profile</span>
-                                  </a>
-                                  @else
-                                  <a class="dropdown-item" href="{{route('staff.profileIndex')}}">
-                                      <i class="bx bx-user me-2"></i>
-                                      <span class="align-middle">My Profile</span>
-                                  </a>
-                                  @endif --}}
 
                               </li>
                               <li>

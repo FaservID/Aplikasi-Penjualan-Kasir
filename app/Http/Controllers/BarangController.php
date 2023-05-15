@@ -101,7 +101,7 @@ class BarangController extends Controller
             // if (!in_array($file, ['png', 'jpg', 'jpeg', 'pdf'])) continue;
             $removeExt = explode('.', $file->getClientOriginalName());
             $implode = array_shift($removeExt);
-            $filename = $implode . '-' . time() . '-' . $extension;
+            $filename = $implode . '-' . time() . '.' . $extension;
             $filename = str_replace(' ', '-', $filename);
             $file->move('product_image', $filename);
         }
