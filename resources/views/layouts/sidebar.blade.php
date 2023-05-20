@@ -60,20 +60,20 @@
                     </ul>
                 </li>
 
-                <li class="menu-item">
+                <li class="menu-item {{ request()->is('admin/pesanan*') ? 'active open' : ''}} {{ request()->is('admin/riwayat-pesanan*') ? 'active open' : ''}} ">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-mail-send"></i>
                         <div data-i18n="transaksi">Transaksi</div>
                     </a>
 
                     <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
+                        <li class="menu-item {{ request()->is('admin/pesanan*') ? 'active' : ''}}">
+                            <a href="{{route('pesanan.index')}}" class="menu-link">
                                 <div data-i18n="pesanan">Pesanan</div>
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
+                        <li class="menu-item {{ request()->is('admin/riwayat-pesanan') ? 'active' : ''}}">
+                            <a href="{{route('admin.pesanan.history')}}" class="menu-link">
                                 <div data-i18n="history">History</div>
                             </a>
                         </li>
@@ -92,13 +92,13 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <div data-i18n="laporan penjualan">Laporan Penjualan</div>
+                            <a href="{{route('admin.pesanan.laporan_stock')}}" class="menu-link">
+                                <div data-i18n="laporan penjualan">Laporan Stock</div>
                             </a>
                         </li>
                         <li class="menu-item">
                             <a href="#" class="menu-link">
-                                <div data-i18n="laporan stock">Laporan Stock</div>
+                                <div data-i18n="laporan stock">Laporan Transaksi</div>
                             </a>
                         </li>
                     </ul>

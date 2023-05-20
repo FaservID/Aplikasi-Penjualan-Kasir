@@ -27,49 +27,52 @@
                     List Kategori
                 </div>
                 <div class="card-body">
-                    <table id="example" class="display table table-bordered py-3">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nama</th>
-                                <th>Deskripsi</th>
-                                <th>dibuat Tanggal</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $i=1; ?>
-                            @foreach ($categories as $category)
-                            <tr>
-                                <td>{{$i++}}</td>
-                                <td>{{$category->nama}}</td>
-                                <td>{{$category->deskripsi}}</td>
-                                <td>{{\Carbon\Carbon::parse($category->created_at)->isoFormat('dddd, D MMMM YYYY');}}</td>
-                                <td class="d-flex justify-content-center">
-                                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editData{{$category->id}}" data-target="#editData{{$category->id}}">
-                                        Edit
-                                    </button>
-                                    |
-                                    <form method="POST" action="{{route('kategori.destroy', $category->id)}}">
-                                        @csrf
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button type="submit" class="btn btn-danger btn-sm show-alert-delete-box" data-toggle="tooltip" title='Delete'>Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>#</th>
-                                <th>Nama</th>
-                                <th>Deskripsi</th>
-                                <th>dibuat Tanggal</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </tfoot>
-                    </table>
+                    <div class="table-responsive text-nowrap">
 
+                        <table id="example" class="display table table-bordered py-3">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nama</th>
+                                    <th>Deskripsi</th>
+                                    <th>dibuat Tanggal</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i=1; ?>
+                                @foreach ($categories as $category)
+                                <tr>
+                                    <td>{{$i++}}</td>
+                                    <td>{{$category->nama}}</td>
+                                    <td>{{$category->deskripsi}}</td>
+                                    <td>{{\Carbon\Carbon::parse($category->created_at)->isoFormat('dddd, D MMMM YYYY');}}</td>
+                                    <td class="d-flex justify-content-center">
+                                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editData{{$category->id}}" data-target="#editData{{$category->id}}">
+                                            Edit
+                                        </button>
+                                        |
+                                        <form method="POST" action="{{route('kategori.destroy', $category->id)}}">
+                                            @csrf
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <button type="submit" class="btn btn-danger btn-sm show-alert-delete-box" data-toggle="tooltip" title='Delete'>Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nama</th>
+                                    <th>Deskripsi</th>
+                                    <th>dibuat Tanggal</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
                 </div>
             </div>
         </div>

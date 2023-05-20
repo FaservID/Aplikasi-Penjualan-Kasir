@@ -42,7 +42,7 @@ class BarangController extends Controller
             $file = $request->file('foto');
             $extension = $file->getClientOriginalExtension();
             // if (!in_array($file, ['png', 'jpg', 'jpeg', 'pdf'])) continue;
-            $filename = time() . '-' . $extension;
+            $filename = time() . '.' . $extension;
             $filename = str_replace(' ', '-', $filename);
             $file->move('product_image', $filename);
         }

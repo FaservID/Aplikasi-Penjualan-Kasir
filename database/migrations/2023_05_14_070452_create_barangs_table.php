@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('slug', 100);
             $table->string('harga', 100);
             $table->string('in_stock', 100)->nullable();
-            $table->string('sell_stock', 100)->nullable();
+            $table->string('sell_stock', 100)->default(0);
             $table->text('keterangan')->nullable();
             $table->string('foto', 100);
             $table->foreignId('kategori_id')->constrained('kategori')->cascadeOnDelete();

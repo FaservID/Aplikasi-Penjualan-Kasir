@@ -59,4 +59,8 @@ class User extends Authenticatable
     {
         return 'id';
     }
+
+    // public function pesanan() {
+    //     return $this->hasMany();
+    // }
 }

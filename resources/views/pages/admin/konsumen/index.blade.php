@@ -35,22 +35,18 @@
                             <th>Email</th>
                             <th>Nomor Handphone</th>
                             <th>Dibuat Tanggal</th>
-                            <th>Qty Pembelian</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i=1; ?>
-                        @forelse ($users as $user)
+                        @foreach ($users as $user)
                         <tr>
                             <td>{{$i++}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->phone_number}}</td>
                             <td>{{\Carbon\Carbon::parse($user->created_at)->isoFormat('dddd, D MMMM YYYY');}}</td>
-                            <td class="text-center">
-                                <div class="badge bg-info">0</div>
-                            </td>
                             <td class="d-flex justify-content-center">
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -66,13 +62,8 @@
                                 </div>
                             </td>
                         </tr>
-                        @empty
-                        <tr>
-                            <td colspan="7" class="text-center">
-                                Data Kosong
-                            </td>
-                        </tr>
-                        @endforelse
+
+                        @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
@@ -81,7 +72,6 @@
                             <th>Email</th>
                             <th>Nomor Handphone</th>
                             <th>Dibuat Tanggal</th>
-                            <th>Qty Pembelian</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>

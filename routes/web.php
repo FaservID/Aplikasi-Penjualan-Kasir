@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\FrondEndController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KonsumenController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Auth;
@@ -20,9 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrondEndController::class, 'index'])->name('fe.index');
 
 Auth::routes();
 
@@ -58,6 +60,20 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
     Route::resource('stock', StockController::class);
 
     Route::resource('konsumen', KonsumenController::class);
+    
+    Route::resource('pesanan', PesananController::class);
+
+    Route::resource('pembayaran', PembayaranController::class);
+
+    Route::post('pesanan/cart', [PesananController::class, 'addCart'])->name('admin.pesanan.cart');
+
+    Route::get('riwayat-pesanan', [PesananController::class, 'history'])->name('admin.pesanan.history');
+
+    Route::get('laporan/stock', [LaporanController::class, 'laporanStock'])->name('admin.pesanan.laporan_stock');
+
+    Route::get('invoice/{pesanan}', [PesananController::class, 'invoice'])->name('admin.pesanan.invoice');
+    
+    Route::match(['put', 'patch'], 'pesanan/selesaikan/{pesanan}', [PesananController::class, 'finishOrder'])->name('admin.pesanan.finishOrder');
 
 });
   

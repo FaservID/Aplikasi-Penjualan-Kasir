@@ -29,6 +29,8 @@
             List Kategori
         </div>
         <div class="card-body">
+            <div class="table-responsive text-nowrap">
+
             <table id="example" class="display table table-bordered py-3 table-responsive">
                 <thead>
                     <tr>
@@ -45,13 +47,13 @@
                 </thead>
                 <tbody>
                     <?php $i=1; ?>
-                    @forelse ($items as $item)
+                    @foreach ($items as $item)
                     <tr>
                         <td>{{$i++}}</td>
                         <td>{{$item->nama}}</td>
                         <td>{{$item->tipe}}</td>
                         <td>{{$item->panjang}} x {{$item->lebar}}</td>
-                        <td>{{$item->harga}}</td>
+                        <td>@currency($item->harga)</td>
                         <td>{{$item->in_stock}}</td>
                         <td>{{$item->sell_stock}}</td>
                         <td>{{$item->Kategori->nama}}</td>
@@ -72,13 +74,8 @@
                             </div>
                         </td>
                     </tr>
-                    @empty
-                    <tr>
-                        <td colspan="9" class="text-center">
-                            Data Kosong
-                        </td>
-                    </tr>
-                    @endforelse
+                    
+                    @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
@@ -95,6 +92,7 @@
                 </tfoot>
             </table>
 
+        </div>
         </div>
     </div>
 </div>
