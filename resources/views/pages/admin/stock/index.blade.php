@@ -49,7 +49,7 @@
                                     <td><a href="barang/{{$stock->barang->slug}}">{{$stock->barang->nama}}</a></td>
                                     <td>@currency($stock->harga_beli)</td>
                                     <td>{{$stock->jumlah}}</td>
-                                    <td>{{\Carbon\Carbon::parse($stock->created_at)->isoFormat('D MMMM YYYY')}}</td>
+                                    <td>{{\Carbon\Carbon::parse($stock->tanggal)->isoFormat('D MMMM YYYY')}}</td>
                                     <td class="d-flex justify-content-center">
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -190,6 +190,17 @@
                                 <label for="defaultFormControlInput" class="form-label">Jumlah</label>
                                 <input type="number" value="{{ old('jumlah') }}" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah" id="jumlah" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />
                                 @error('jumlah')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label for="defaultFormControlInput" class="form-label">Tanggal</label>
+                                <input type="date" value="{{ old('tanggal') }}" class="form-control @error('tanggal') is-invalid @enderror" name="tanggal" id="tanggal" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />
+                                @error('tanggal')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{$message}}</strong>
                                 </span>

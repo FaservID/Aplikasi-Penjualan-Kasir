@@ -24,7 +24,8 @@ class CreateStockRequest extends FormRequest
         return [
             'barang_id' => 'required',
             'harga_beli' => 'required',
-            'jumlah' => 'required'
+            'jumlah' => 'required',
+            'tanggal' => 'required'
         ];
     }
 }

@@ -85,19 +85,19 @@
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Menu Lainnya</span>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ request()->is('admin/laporan*') ? 'active open' : ''}}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bxs-report"></i>
                         <div data-i18n="laporan">Laporan</div>
                     </a>
                     <ul class="menu-sub">
-                        <li class="menu-item">
+                        <li class="menu-item {{ request()->is('admin/laporan/stock') ? 'active' : ''}}">
                             <a href="{{route('admin.pesanan.laporan_stock')}}" class="menu-link">
                                 <div data-i18n="laporan penjualan">Laporan Stock</div>
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
+                        <li class="menu-item {{ request()->is('admin/laporan/transaksi') ? 'active' : ''}}">
+                            <a href="{{route('admin.pesanan.laporan_transaksi')}}" class="menu-link">
                                 <div data-i18n="laporan stock">Laporan Transaksi</div>
                             </a>
                         </li>
