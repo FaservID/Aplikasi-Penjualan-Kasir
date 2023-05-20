@@ -28,58 +28,61 @@
                     List Kategori
                 </div>
                 <div class="card-body">
-                    <table id="example" class="display table table-bordered py-3">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nama Barang</th>
-                                <th>Harga Beli</th>
-                                <th>Jumlah</th>
-                                <th>Tanggal</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $i=1; ?>
-                            @foreach ($stocks as $stock)
-                            <tr>
-                                <td>{{$i++}}</td>
-                                <td><a href="barang/{{$stock->barang->slug}}">{{$stock->barang->nama}}</a></td>
-                                <td>Rp. {{$stock->harga_beli}}</td>
-                                <td>{{$stock->jumlah}}</td>
-                                <td>{{\Carbon\Carbon::parse($stock->created_at)->isoFormat('D MMMM YYYY')}}</td>
-                                <td class="d-flex justify-content-center">
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editData{{$stock->id}}" data-target="#editData{{$stock->id}}">
-                                                <i class="bx bx-edit-alt me-1"></i> Edit
-                                            </button>
-                                            <form method="POST" action="{{route('stock.destroy', $stock->id)}}">
-                                                @csrf
-                                                <input name="_method" type="hidden" value="DELETE">
-                                                <button type="submit" class="btn dropdown-item show-alert-delete-box" data-toggle="tooltip" title='Delete'><i class="bx bx-trash me-1"></i> Delete</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>#</th>
-                                <th>Nama Barang</th>
-                                <th>Harga Beli</th>
-                                <th>Jumlah</th>
-                                <th>Tanggal</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </tfoot>
-                    </table>
+                    <div class="table-responsive text-nowrap">
 
+                        <table id="example" class="display table table-bordered py-3">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nama Barang</th>
+                                    <th>Harga Beli</th>
+                                    <th>Jumlah</th>
+                                    <th>Tanggal</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i=1; ?>
+                                @foreach ($stocks as $stock)
+                                <tr>
+                                    <td>{{$i++}}</td>
+                                    <td><a href="barang/{{$stock->barang->slug}}">{{$stock->barang->nama}}</a></td>
+                                    <td>@currency($stock->harga_beli)</td>
+                                    <td>{{$stock->jumlah}}</td>
+                                    <td>{{\Carbon\Carbon::parse($stock->created_at)->isoFormat('D MMMM YYYY')}}</td>
+                                    <td class="d-flex justify-content-center">
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editData{{$stock->id}}" data-target="#editData{{$stock->id}}">
+                                                    <i class="bx bx-edit-alt me-1"></i> Edit
+                                                </button>
+                                                <form method="POST" action="{{route('stock.destroy', $stock->id)}}">
+                                                    @csrf
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    <button type="submit" class="btn dropdown-item show-alert-delete-box" data-toggle="tooltip" title='Delete'><i class="bx bx-trash me-1"></i> Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nama Barang</th>
+                                    <th>Harga Beli</th>
+                                    <th>Jumlah</th>
+                                    <th>Tanggal</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
                 </div>
             </div>
 
