@@ -31,6 +31,7 @@ class PembayaranController extends Controller
     public function store(CreatePembayaranRequest $request)
     {
         // dd($request->type);
+        $filename = "";
         if ($request->file('bukti_tf') != null) {
             $file = $request->file('bukti_tf');
             $extension = $file->getClientOriginalExtension();

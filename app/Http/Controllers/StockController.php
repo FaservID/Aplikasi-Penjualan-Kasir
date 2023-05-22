@@ -33,9 +33,15 @@ class StockController extends Controller
      */
     public function store(CreateStockRequest $request)
     {
-        Stock::create($request->validated());
         $barang = Barang::where('id', $request->barang_id);
         $getFirstData = $barang->first();
+        Stock::create([
+            'barang_id' => $request->barang_id,
+            'harga_beli' => $request->harga_beli,
+            'jumlah' => $request->jumlah,
+            'tanggal' => $request->tanggal,
+            'stock_awal' => $getFirstData->in_stock,
+        ]);
         $getStock = $getFirstData->in_stock + $request->jumlah;
         $barang->update(['in_stock' => $getStock]);
         return redirect()->route('stock.index')->with('message', 'Berhasil Menambahkan Stock');

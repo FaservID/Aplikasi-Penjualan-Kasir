@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Barang extends Model
 {
@@ -19,7 +20,18 @@ class Barang extends Model
         return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
     }
 
-    public function getRouteKeyName() {
+    public function detailOrders(): HasMany
+    {
+        return $this->hasMany(DetailOrder::class, 'barang_id', 'id');
+    }
+
+    public function stocks(): HasMany
+    {
+        return $this->hasMany(Stock::class, 'barang_id', 'id');
+    }
+
+    public function getRouteKeyName()
+    {
         return 'slug';
     }
 }

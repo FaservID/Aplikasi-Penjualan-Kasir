@@ -81,8 +81,12 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
     Route::post('laporan/stock', [LaporanController::class, 'cetakLaporanStock'])->name('admin.pesanan.cetak_laporan_stock');
 
     Route::get('laporan/transaksi', [LaporanController::class, 'laporanTransaksi'])->name('admin.pesanan.laporan_transaksi');
-
+    
     Route::post('laporan/transaksi', [LaporanController::class, 'cetakLaporanTransaksi'])->name('admin.pesanan.cetak_laporan_transaksi');
+
+    Route::get('laporan/jurnal-umum', [LaporanController::class, 'jurnalUmum'])->name('admin.pesanan.jurnal-umum');
+
+    Route::post('laporan/jurnal-umum', [LaporanController::class, 'cetakjurnalUmum'])->name('admin.pesanan.cetak_jurnal_umum');
 });
 
 /*------------------------------------------

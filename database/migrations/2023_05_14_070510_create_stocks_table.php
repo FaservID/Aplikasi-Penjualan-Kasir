@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('barang_id')->constrained('barang')->cascadeOnDelete();
             $table->string('harga_beli', 100);
             $table->string('jumlah');
+            $table->date('tanggal');
+            $table->string('stock_awal');
             $table->timestamps();
         });
     }

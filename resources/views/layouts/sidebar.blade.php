@@ -101,6 +101,11 @@
                                 <div data-i18n="laporan stock">Laporan Transaksi</div>
                             </a>
                         </li>
+                        <li class="menu-item {{ request()->is('admin/laporan/jurnal-umum') ? 'active' : ''}}">
+                            <a href="{{route('admin.pesanan.jurnal-umum')}}" class="menu-link">
+                                <div data-i18n="Jurnal Umum">Jurnal Umum</div>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

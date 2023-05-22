@@ -35,14 +35,13 @@
     </div>
     <hr class="mb-4 border-black">
     <table class="table table-bordered table-striped">
-        <thead style="background-color:#84B0CA ;" class="text-white text-center">
+        <thead style="background-color:#84B0CA ;" class="text-white text-center align-middle">
             <tr>
                 <th scope="col" rowspan="2">#</th>
-                <th scope="col" rowspan="2">Tanggal</th>
                 <th scope="col" rowspan="2">Nama Barang</th>
                 <th scope="col" rowspan="2">Stock Awal</th>
                 <th scope="col" colspan="2">Mutasi</th>
-                <th scope="col" rowspan="2">Harga</th>
+                <th scope="col" rowspan="2">Stock Akhir</th>
 
             </tr>
             <tr>
@@ -52,21 +51,67 @@
         </thead>
         <tbody>
             <?php $i=1; ?>
-            @foreach ($stocks as $stock)
+            @foreach ($items as $item)
             <tr>
-                <th scope="row">{{$i++}}</th>
-                <td>{{\Carbon\Carbon::parse($stock->tanggal)->isoFormat('D MMMM YYYY')}}</td>
-                <td>{{$stock->barang->nama}}</td>
-                <td class="text-center">{{$stock->barang->in_stock}}</td>
-                <td class="text-center">{{$stock->jumlah}}</td>
-                <td class="text-center">{{$stock->jumlah}}</td>
-                <td>@currency($stock->harga_beli)</td>
+                <th scope="row" class="text-center">{{$i++}}</th>
+                <td>{{$item->nama}}</td>
+                <td class="text-center">
+                    {{-- @if ($item->stocks[0] == null) --}}
+                    @foreach ($stocks as $stock)
+                    @if ($stock->barang_id == $item->id)
+                    @if ($stock->total > 0)
+                    {{$item->stocks[0]->stock_awal}}
+                    @endif
+                    @else
+                    {{-- {{$item->in_stock}} --}}
+                    @endif
+                    {{-- @break --}}
+                    @endforeach
+
+                    {{-- @else
+                    {{$item->stocks[0]->stock_awal}}
+
+                    @endif --}}
+
+                </td>
+                <td class="text-center">
+                    @foreach ($stocks as $stock)
+                    @if ($stock->barang_id == $item->id)
+                    {{$stock->jumlah}}
+                    {{-- @else
+                    - --}}
+                    @endif
+                    {{-- @break --}}
+
+                    @endforeach
+                </td>
+                <td class="text-center">
+                    @foreach ($orders as $stock)
+                    @if ($stock->barang_id == $item->id)
+                    {{$stock->jumlah_out}}
+
+                    @endif
+                    {{-- @break --}}
+
+                    @endforeach
+                </td>
+                <td class="text-center">
+                    @foreach ($stocks as $stock)
+                    @foreach ($orders as $order)
+                    @if ($stock->barang_id == $item->id && $item->id == $order->barang_id)
+                    {{($item->stocks[0]->stock_awal + $stock->jumlah) - $order->jumlah_out}}
+                    @endif
+                    @endforeach
+                    {{-- @break --}}
+
+                    @endforeach
+                </td>
             </tr>
             @endforeach
         </tbody>
     </table>
     <script>
-        window.print()
+        // window.print()
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
