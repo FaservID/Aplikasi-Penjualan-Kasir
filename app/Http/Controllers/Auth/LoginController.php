@@ -56,7 +56,7 @@ class LoginController extends Controller
             }else if (auth()->user()->type == 'pimpinan') {
                 return redirect()->route('pimpinan.home');
             }else{
-                return redirect()->route('home');
+                return redirect()->route('fe.index');
             }
         }else{
             return redirect()->route('login')

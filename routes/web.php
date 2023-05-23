@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\FrondEndController;
 use App\Http\Controllers\HomeController;
@@ -25,6 +26,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [FrondEndController::class, 'index'])->name('fe.index');
+
+Route::get('/cart', [FrondEndController::class, 'cart'])->name('fe.cart');
+
+Route::post('/cart', [FrondEndController::class, 'addCart'])->name('fe.add-cart');
+
+Route::get('/pesanan', [FrondEndController::class, 'pesanan'])->name('fe.pesanan');
+
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+
+Route::get('/pesanan/invoice/{pesanan}', [FrondEndController::class, 'invoice'])->name('fe.pesanan.invoice');
+
+Route::post('/pesanan/invoice/', [FrondEndController::class, 'payment'])->name('fe.pesanan.payment');
+
 
 Auth::routes();
 
@@ -75,18 +89,6 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
 
 
     /* LAPORAN */
-
-    Route::get('laporan/stock', [LaporanController::class, 'laporanStock'])->name('admin.pesanan.laporan_stock');
-
-    Route::post('laporan/stock', [LaporanController::class, 'cetakLaporanStock'])->name('admin.pesanan.cetak_laporan_stock');
-
-    Route::get('laporan/transaksi', [LaporanController::class, 'laporanTransaksi'])->name('admin.pesanan.laporan_transaksi');
-    
-    Route::post('laporan/transaksi', [LaporanController::class, 'cetakLaporanTransaksi'])->name('admin.pesanan.cetak_laporan_transaksi');
-
-    Route::get('laporan/jurnal-umum', [LaporanController::class, 'jurnalUmum'])->name('admin.pesanan.jurnal-umum');
-
-    Route::post('laporan/jurnal-umum', [LaporanController::class, 'cetakjurnalUmum'])->name('admin.pesanan.cetak_jurnal_umum');
 });
 
 /*------------------------------------------
@@ -94,7 +96,19 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
 All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
-Route::middleware(['auth', 'user-access:pimpinan'])->group(function () {
+Route::middleware(['auth', 'user-access:pimpinan'])->prefix('pimpinan')->group(function () {
 
-    Route::get('/pimpinan/home', [HomeController::class, 'pimpinanHome'])->name('pimpinan.home');
+    Route::get('/home', [HomeController::class, 'pimpinanHome'])->name('pimpinan.home');
+
+    Route::get('laporan/stock', [LaporanController::class, 'laporanStock'])->name('pimpinan.pesanan.laporan_stock');
+
+    Route::post('laporan/stock', [LaporanController::class, 'cetakLaporanStock'])->name('pimpinan.pesanan.cetak_laporan_stock');
+
+    Route::get('laporan/transaksi', [LaporanController::class, 'laporanTransaksi'])->name('pimpinan.pesanan.laporan_transaksi');
+
+    Route::post('laporan/transaksi', [LaporanController::class, 'cetakLaporanTransaksi'])->name('pimpinan.pesanan.cetak_laporan_transaksi');
+
+    Route::get('laporan/jurnal-umum', [LaporanController::class, 'jurnalUmum'])->name('pimpinan.pesanan.jurnal-umum');
+
+    Route::post('laporan/jurnal-umum', [LaporanController::class, 'cetakjurnalUmum'])->name('pimpinan.pesanan.cetak_jurnal_umum');
 });

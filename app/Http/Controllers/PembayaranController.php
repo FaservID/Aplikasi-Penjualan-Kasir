@@ -14,7 +14,9 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.admin.payment.index', [
+            'payments' => Pembayaran::with('pesanan','user')->orderBy('id', 'DESC')->get()
+        ]);
     }
 
     /**
@@ -30,7 +32,7 @@ class PembayaranController extends Controller
      */
     public function store(CreatePembayaranRequest $request)
     {
-        // dd($request->type);
+        // dd($request->all());
         $filename = "";
         if ($request->file('bukti_tf') != null) {
             $file = $request->file('bukti_tf');
@@ -43,15 +45,15 @@ class PembayaranController extends Controller
         $cash = [
             'pesanan_id' => $request->pesanan_id,
             'user_id' => $request->user_id,
-            'type' => $request->type,
+            'tipe' => $request->type,
             'nominal' => $request->total_bayar
         ];
         $transfer = [
             'pesanan_id' => $request->pesanan_id,
             'user_id' => $request->user_id,
-            'type' => $request->type,
+            'tipe' => $request->type,
             'bank_type' => $request->type_bank,
-            'no_rekening' => $request->no_rek,
+            'nomor_rekening' => $request->no_rek,
             'nama_rekening' => $request->nama_rek,
             'nominal' => $request->jumlah,
             'bukti_pembayaran' => $filename,
@@ -97,6 +99,8 @@ class PembayaranController extends Controller
      */
     public function destroy(Pembayaran $pembayaran)
     {
-        //
+        $pembayaran->delete();
+        return redirect()->route('pembayaran.index')->with('message', 'Pembayaran Dihapus');
+
     }
 }

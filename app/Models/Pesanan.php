@@ -26,6 +26,11 @@ class Pesanan extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function payment(): BelongsTo
+    {
+        return $this->belongsTo(Pembayaran::class, 'pesanan_id', 'id');
+    }
+
     public function detailOrders():HasMany {
         return $this->hasMany(DetailOrder::class, 'pesanan_id', 'id');
     }

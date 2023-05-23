@@ -131,7 +131,7 @@
                                         </form>
                                         @endif
                                         <a href="{{route('admin.pesanan.invoice', $order->order_id)}}" target="_blank" class="dropdown-item"><i class='bx bx-receipt me-1'></i>Cetak Receipt</a>
-                                        <form method="POST" action="{{route('pesanan.destroy', $order->id)}}">
+                                        <form method="POST" action="{{route('pesanan.destroy', $order->order_id)}}">
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
                                             <button type="submit" class="btn dropdown-item show-alert-delete-box" data-toggle="tooltip" title='Delete'><i class="bx bx-trash me-1"></i> Delete</button>

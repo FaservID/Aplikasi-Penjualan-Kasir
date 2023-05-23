@@ -27,7 +27,6 @@
 
                         </div>
                         <div class="row mt-3">
-
                             <div class="col-md-4">
                                 <label for="defaultFormControlInput" class="form-label">Nama</label>
                                 <input type="text" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" name="name" id="name" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />

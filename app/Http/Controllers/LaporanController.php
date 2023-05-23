@@ -14,7 +14,7 @@ class LaporanController extends Controller
 {
     public function laporanStock(): View
     {
-        return view('pages.admin.laporan.laporan-stock', [
+        return view('pages.pimpinan.laporan.laporan-stock', [
             'stocks' => Stock::with('barang')->orderBy('created_at', 'DESC')->get(),
         ]);
     }
@@ -74,7 +74,7 @@ class LaporanController extends Controller
 
     public function laporanTransaksi(): View
     {
-        return view('pages.admin.laporan.laporan-transaksi', [
+        return view('pages.pimpinan.laporan.laporan-transaksi', [
             'transactions' => Pesanan::with('user', 'barang', 'detailOrders')->where('status', 'Selesai')->orderBy('id', 'DESC')->get(),
         ]);
     }
@@ -90,8 +90,8 @@ class LaporanController extends Controller
 
     public function jurnalUmum(): View
     {
-        return view('pages.admin.laporan.jurnal-umum', [
-            'data' => Stock::orderBy('tanggal', 'ASC')->get(),
+        return view('pages.pimpinan.laporan.jurnal-umum', [
+            'data' => Stock::orderBy('created_at', 'ASC')->get(),
         ]);
     }
 
@@ -99,7 +99,7 @@ class LaporanController extends Controller
     {
         $date_from = $request->date_from;
         $date_to = $request->date_to;
-        $data = Stock::whereDate('created_at', '>=', $date_from)->whereDate('created_at', '<=', $date_to)->orderBy('tanggal', 'ASC')->get();
+        $data = Stock::whereDate('created_at', '>=', $date_from)->whereDate('created_at', '<=', $date_to)->orderBy('created_at', 'ASC')->get();
         $balance = 0;
         foreach ($data as $item) {
             $balance += $item->harga_beli;

@@ -17,7 +17,7 @@ class PesananController extends Controller
     public function index()
     {
         return view('pages.admin.pesanan.index', [
-            'orders' => Pesanan::with('user', 'barang', 'detailOrders')->where('status', '!=', 'Selesai')->orderBy('id', 'DESC')->get(),
+            'orders' => Pesanan::with('user', 'barang', 'detailOrders', 'payment')->where('status', '!=', 'Selesai')->orderBy('id', 'DESC')->get(),
         ]);
     }
 
@@ -134,6 +134,24 @@ class PesananController extends Controller
      */
     public function destroy(Pesanan $pesanan)
     {
-        //
+        // $barang = array();
+        // $quantity = array();
+        // foreach ($pesanan->detailOrders as $key => $item) {
+        //     // array_push($barang, $item->barang_id[$key]);
+        //     $barang[] = $item->barang_id;
+        //     $quantity[] = $item->jumlah;
+        // }
+        // $getQty = array();
+        // if(count($barang) > 0) {
+        //     foreach($barang as $key => $item){
+        //         $items = Barang::where('id', $item[$key])->first();
+        //         $getQty[] = $items->jumlah;
+        //     }
+        // }
+        // dd($getQty);
+        // $barang = $pesanan->detailOrders->barang_id;
+        $pesanan->delete();
+        return redirect()->route('pesanan.index')->with('message', 'Pesanan Berhasil Dihapus');
+
     }
 }

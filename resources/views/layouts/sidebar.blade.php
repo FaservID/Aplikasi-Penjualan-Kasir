@@ -72,6 +72,11 @@
                                 <div data-i18n="pesanan">Pesanan</div>
                             </a>
                         </li>
+                        <li class="menu-item {{ request()->is('admin/pembayaran*') ? 'active' : ''}}">
+                            <a href="{{route('pembayaran.index')}}" class="menu-link">
+                                <div data-i18n="pembayaran">Pembayaran</div>
+                            </a>
+                        </li>
                         <li class="menu-item {{ request()->is('admin/riwayat-pesanan') ? 'active' : ''}}">
                             <a href="{{route('admin.pesanan.history')}}" class="menu-link">
                                 <div data-i18n="history">History</div>
@@ -85,29 +90,7 @@
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Menu Lainnya</span>
                 </li>
-                <li class="menu-item {{ request()->is('admin/laporan*') ? 'active open' : ''}}">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bxs-report"></i>
-                        <div data-i18n="laporan">Laporan</div>
-                    </a>
-                    <ul class="menu-sub">
-                        <li class="menu-item {{ request()->is('admin/laporan/stock') ? 'active' : ''}}">
-                            <a href="{{route('admin.pesanan.laporan_stock')}}" class="menu-link">
-                                <div data-i18n="laporan penjualan">Laporan Stock</div>
-                            </a>
-                        </li>
-                        <li class="menu-item {{ request()->is('admin/laporan/transaksi') ? 'active' : ''}}">
-                            <a href="{{route('admin.pesanan.laporan_transaksi')}}" class="menu-link">
-                                <div data-i18n="laporan stock">Laporan Transaksi</div>
-                            </a>
-                        </li>
-                        <li class="menu-item {{ request()->is('admin/laporan/jurnal-umum') ? 'active' : ''}}">
-                            <a href="{{route('admin.pesanan.jurnal-umum')}}" class="menu-link">
-                                <div data-i18n="Jurnal Umum">Jurnal Umum</div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+
 
                 <li class="menu-item">
                     <a href="{{route('konsumen.index')}}" class="menu-link">
@@ -123,20 +106,25 @@
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Menu Utama</span>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ request()->is('pimpinan/laporan*') ? 'active open' : ''}}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bxs-report"></i>
                         <div data-i18n="laporan">Laporan</div>
                     </a>
                     <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <div data-i18n="laporan penjualan">Laporan Penjualan</div>
+                        <li class="menu-item {{ request()->is('pimpinan/laporan/stock') ? 'active' : ''}}">
+                            <a href="{{route('pimpinan.pesanan.laporan_stock')}}" class="menu-link">
+                                <div data-i18n="laporan penjualan">Laporan Stock</div>
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <div data-i18n="laporan stock">Laporan Stock</div>
+                        <li class="menu-item {{ request()->is('pimpinan/laporan/transaksi') ? 'active' : ''}}">
+                            <a href="{{route('pimpinan.pesanan.laporan_transaksi')}}" class="menu-link">
+                                <div data-i18n="laporan stock">Laporan Transaksi</div>
+                            </a>
+                        </li>
+                        <li class="menu-item {{ request()->is('pimpinan/laporan/jurnal-umum') ? 'active' : ''}}">
+                            <a href="{{route('pimpinan.pesanan.jurnal-umum')}}" class="menu-link">
+                                <div data-i18n="Jurnal Umum">Jurnal Umum</div>
                             </a>
                         </li>
                     </ul>
