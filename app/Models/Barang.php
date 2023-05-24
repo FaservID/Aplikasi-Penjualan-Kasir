@@ -34,4 +34,9 @@ class Barang extends Model
     {
         return 'slug';
     }
+
+    // public static function latest($column = 'created_at')
+    // {
+    //     self->query()->orderBy($column, 'desc');
+    // }
 }

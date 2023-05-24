@@ -18,6 +18,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src=" https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
     <style>
         body {
             background-color: #eeeeee;
@@ -29,9 +30,16 @@
             min-height: 100%;
         }
 
+        footer {
+            position: absolute;
+            width: 100%;
+            /* bottom: -100px; */
+        }
+
     </style>
 </head>
 <body>
+    <!-- Navigation-->
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top border-bottom mb-5">
         <div class="container px-4 px-lg-5">
@@ -45,22 +53,24 @@
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Pesanan</a>
+                        <a class="nav-link" href="{{route('fe.pesanan')}}">Pesanan</a>
                     </li>
-
                 </ul>
                 <div class="d-flex">
-                    <button class="btn" type="submit">
+                    <a class="btn" type="submit" href="{{route('fe.cart')}}">
                         <i class="bi-cart-fill text-white"></i>
                         <span class="badge bg-danger text-white rounded-pill cart">0</span>
-                    </button>
+                    </a>
+                    <a class="btn border-light text-white" href="{{route('fe.profil')}}" style="margin-right:10px">
+                        <i class='bx bxs-user text-white'></i>
+                    </a>
                     @if (!Auth::check())
                     <a class="btn border-light text-white" href="login">
                         <i class='bx bx-log-in text-white'></i> Masuk
                     </a>
                     @else
                     <a class="btn border-light text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
+                    document.getElementById('logout-form').submit(); destroyLocalStorage()">
                         <i class="bx bx-power-off"></i>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -74,7 +84,7 @@
     <!-- Header-->
 
     <!-- Section-->
-    <section class="py-5">
+    <section class="py-5 mb-5 mt-3">
         <div class="container px-4 px-lg-5 mt-0 py-5">
             <div class="card">
                 <div class="card-header">
@@ -376,17 +386,19 @@
     </div>
     @endforeach
     <!-- Modal -->
+
     <!-- Footer-->
-    <footer class="py-5 bg-dark">
+    <footer class="py-5 bg-dark footer mt-5">
         <div class="container">
             <p class="m-0 text-center text-white">
-                Copyright &copy; Your Website 2023
+                Copyright &copy; CV. Kasur Asssahaz 2023
             </p>
         </div>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
+
     <script src="js/scripts.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -402,6 +414,26 @@
         console.log(data)
 
     </script>
+    <script type="text/javascript">
+        function selectPayment(id) {
+            console.log(id)
+            let type = document.getElementById(`type-${id}`).value;
+            let cash = document.getElementById(`cash-${id}`);
+            console.log(cash)
+            let transfer = document.getElementById(`transfer-${id}`);
+            if (type == "Cash") {
+                cash.classList.remove("d-none")
+                transfer.classList.add("d-none")
+            } else {
+                transfer.classList.remove("d-none")
+                cash.classList.add("d-none")
 
+            }
+        }
+        function destroyLocalStorage() {
+            localStorage.clear();
+        }
+    </script>
+    
 </body>
 </html>

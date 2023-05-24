@@ -35,10 +35,13 @@ Route::get('/pesanan', [FrondEndController::class, 'pesanan'])->name('fe.pesanan
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 
+Route::get('/profil', [FrondEndController::class, 'profile'])->name('fe.profil');
+
 Route::get('/pesanan/invoice/{pesanan}', [FrondEndController::class, 'invoice'])->name('fe.pesanan.invoice');
 
 Route::post('/pesanan/invoice/', [FrondEndController::class, 'payment'])->name('fe.pesanan.payment');
 
+Route::match(['put', 'patch'], 'profil/{user}', [FrondEndController::class, 'updateProfil'])->name('fe.profil.update');
 
 Auth::routes();
 

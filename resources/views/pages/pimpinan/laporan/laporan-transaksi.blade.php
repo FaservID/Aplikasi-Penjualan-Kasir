@@ -150,7 +150,7 @@
                         @csrf
                         @method('POST')
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Laporan Stock</h1>
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Laporan Transaksi</h1>
                         </div>
                         <div class="modal-body">
                             <div class="col-md-12">

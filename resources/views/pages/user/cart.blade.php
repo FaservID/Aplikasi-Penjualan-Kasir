@@ -170,13 +170,16 @@
                         <i class="bi-cart-fill text-white"></i>
                         <span class="badge bg-danger text-white rounded-pill cart">0</span>
                     </button>
+                    <a class="btn border-light text-white" href="{{route('fe.profil')}}" style="margin-right:10px">
+                        <i class='bx bxs-user text-white'></i>
+                    </a>
                     @if (!Auth::check())
                     <a class="btn border-light text-white" href="login">
                         <i class='bx bx-log-in text-white'></i> Masuk
                     </a>
                     @else
                     <a class="btn border-light text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
+                    document.getElementById('logout-form').submit(); destroyLocalStorage()">
                         <i class="bx bx-power-off"></i>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -195,7 +198,14 @@
             <div class="container-fluid py-5">
                 <div class="row">
                     <aside class="col-lg-9">
+                        @if(session('message'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{session('message')}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @endif
                         <div class="card mb-3">
+
                             <div class="table-responsive">
                                 <form action="" method="POST">
                                     @csrf
@@ -225,7 +235,6 @@
                             </div>
                         </div>
                         <div class="card">
-
                             <div class="table-responsive">
                                 <table class="table table-bordered table-shopping-cart">
                                     <thead class="text-muted">
@@ -252,7 +261,7 @@
                             <div class="card-body">
                                 <div class="mb-2">
                                     <label for="defaultFormControlInput" class="form-label">Pembayaran</label>
-                                    <select name="type" id="type" class="form-control" onchange="selectPayment()">
+                                    <select name="type" id="type" class="form-control" required onchange="selectPayment()">
                                         <option value="" selected disabled>-- Pilih Pembayaran --</option>
                                         <option value="Cash">Cash</option>
                                         <option value="Transfer">Transfer</option>
@@ -292,13 +301,12 @@
                 </div>
             </div>
         </div>
-        </div>
         <!-- Footer-->
     </section>
     <footer class="py-5 bg-dark mt-5">
         <div class="container">
             <p class="m-0 text-center text-white">
-                Copyright &copy; Your Website 2023
+                Copyright &copy; CV. Kasur Asssahaz 2023
             </p>
         </div>
     </footer>
@@ -344,6 +352,7 @@
 
         let user_id = @json($user_id);
         console.log('user_id ', user_id)
+
         function initApp() {
 
             items.innerHTML = "";

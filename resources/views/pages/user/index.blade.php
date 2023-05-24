@@ -39,21 +39,25 @@
                         <i class="bi-cart-fill text-white"></i>
                         <span class="badge bg-danger text-white rounded-pill cart">0</span>
                     </a>
+                    @if(Auth::check())
+                    <a class="btn border-light text-white" href="{{route('fe.profil')}}" style="margin-right:10px">
+                        <i class='bx bxs-user text-white'></i>
+                    </a>
+
+                    @endif
                     @if (!Auth::check())
                     <a class="btn border-light text-white" href="login">
                         <i class='bx bx-log-in text-white'></i> Masuk
                     </a>
                     @else
                     <a class="btn border-light text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
+                    document.getElementById('logout-form').submit(); destroyLocalStorage()">
                         <i class="bx bx-power-off"></i>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
                     @endif
-
-
                 </div>
             </div>
         </div>
@@ -65,19 +69,32 @@
             <div class="col-md-12 mt-5">
                 <div class="row">
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 mb-4 mb-md-0">
                         <ul class="list-group">
                             <li class="list-group-item bg-dark text-white"><i class='bx bx-list-ul me-2'></i><span style="font-weight: bold">Katalog</span></li>
                             @foreach ($katalog as $item)
-                            <li class="list-group-item">{{$item->nama}}</li>
-
+                            <li class="list-group-item"><a href="{{route('fe.index')}}?katalog={{$item->nama}}" class="text-dark text-decoration-none"><i class='bx bx-chevron-right me-2'></i> {{$item->nama}}</a></li>
                             @endforeach
-                            <li class="list-group-item">Bantal</li>
-                            <li class="list-group-item">Selimut</li>
+                            <li class="list-group-item"><a href="{{route('fe.index')}}" class="text-dark text-decoration-none"><i class='bx bx-chevron-right me-2'></i> Semua Katalog</a></li>
+                        </ul>
+                        <ul class="list-group mt-2">
+                            <li class="list-group-item bg-dark text-white"><i class='bx bx-list-ul me-2'></i><span style="font-weight: bold">Cari Produk</span></li>
+                            <div class="d-flex justify-content-between list-group-item">
+                                <form action="#">
+                                    <div class="row">
+                                        <div class="col-8 mb-md-2">
+                                            <input type="text" class="form-control" placeholder="Cari produk" name="keyword" style="width: 100%">
+                                        </div>
+                                        <div class="col-4">
+                                            <button type="submit" style="width: 100%" class="btn btn-dark"><i class='bx bx-search'></i></button>
+                                        </div>
 
+                                    </div>
+                                </form>
+                            </div>
                         </ul>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-9 ">
                         <div id="carouselExampleCaptions" class="carousel slide">
                             <div class="carousel-indicators">
                                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -88,11 +105,6 @@
                                 <div class="carousel-item active">
                                     <img src="{{asset('fe/assets/bg4.jpg')}}" class="d-block w-100" alt="..." />
                                     <div class="carousel-caption d-none d-md-block">
-                                        {{-- <h5>First slide label</h5>
-                                        <p>
-                                            Some representative placeholder content for the
-                                            first slide.
-                                        </p> --}}
                                     </div>
                                 </div>
                                 <div class="carousel-item">
@@ -149,7 +161,7 @@
         <div class="container">
             <div class="total"></div>
             <p class="m-0 text-center text-white">
-                Copyright &copy; Your Website 2023
+                Copyright &copy; CV. Kasur Asssahaz 2023
             </p>
         </div>
     </footer>
@@ -179,7 +191,6 @@
             products.forEach((value, key) => {
                 let newDiv = document.createElement('div');
                 newDiv.classList.add('item');
-
                 newDiv.innerHTML = `
                     <div class="col mb-5">
                         <div class="card h-100">

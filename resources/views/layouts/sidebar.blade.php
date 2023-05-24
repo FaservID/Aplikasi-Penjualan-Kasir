@@ -60,7 +60,7 @@
                     </ul>
                 </li>
 
-                <li class="menu-item {{ request()->is('admin/pesanan*') ? 'active open' : ''}} {{ request()->is('admin/riwayat-pesanan*') ? 'active open' : ''}} ">
+                <li class="menu-item {{ request()->is('admin/pesanan*') ? 'active open' : ''}} {{ request()->is('admin/riwayat-pesanan*') ? 'active open' : ''}} {{ request()->is('admin/pembayaran*') ? 'active open' : ''}}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-mail-send"></i>
                         <div data-i18n="transaksi">Transaksi</div>

@@ -7,6 +7,7 @@ use App\Models\DetailOrder;
 use App\Models\Kategori;
 use App\Models\Pembayaran;
 use App\Models\Pesanan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -16,18 +17,26 @@ class FrondEndController extends Controller
 {
     public function index(): View
     {
-        // $items = Barang::paginate(4);
-        // dd($items);
+        $items = Barang::orderBy('created_at', 'DESC');
+        if (request('katalog')) {
+            if (request('katalog') == 'Kasur') {
+                $items->where('kategori_id', 1);
+            } else {
+                $items->where('kategori_id', 2);
+            }
+        }
+        if (request('keyword')) {
+            $items->where('nama', 'like', '%' . request('keyword') . '%');
+        }
         if (Auth::check()) {
-
             return view('pages.user.index', [
-                'items' => Barang::all(),
+                'items' => $items->get(),
                 'katalog' => Kategori::all(),
                 'user_id' => Auth::user()->id
             ]);
         } else {
             return view('pages.user.index', [
-                'items' => Barang::all(),
+                'items' => $items->get(),
                 'katalog' => Kategori::all(),
                 'user_id' => null
 
@@ -94,7 +103,7 @@ class FrondEndController extends Controller
         Pesanan::where('order_id', $request->order_id)->update(['total_harga' => $total_harga]);
 
 
-        return redirect()->route('fe.index')->with('message', 'Berhasil Membuat Pesanan');
+        return redirect()->route('fe.cart')->with('message', 'Berhasil Membuat Pesanan, Segera Untuk Melakukan Pembayaran');
         // dd($request->all());
     }
 
@@ -164,5 +173,27 @@ class FrondEndController extends Controller
         } else {
             return redirect()->route('login');
         }
+    }
+
+    public function profile()
+    {
+        if (Auth::check()) {
+            return view('pages.user.profile', [
+                'user_id' => Auth::user()->id
+            ]);
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function updateProfil(User $user, Request $request)
+    {
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number
+        ]);
+        return redirect()->route('fe.profil')->with('message', 'Berhasil Mengubah Profil');
+
     }
 }
