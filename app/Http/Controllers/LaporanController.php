@@ -111,4 +111,48 @@ class LaporanController extends Controller
             'balance' => $balance
         ]);
     }
+
+    public function labaRugi(): View
+    {
+        $data = Pesanan::orderBy('created_at', 'ASC')->get();
+        $hpp = 0;
+        foreach ($data as $item) {
+            $hpp += $item->total_harga;
+        }
+        $stocks = Stock::orderBy('created_at', 'ASC')->get();
+        $harga_pembelian = 0;
+        foreach ($stocks as $item) {
+            $harga_pembelian += $item->harga_beli;
+        }
+        $laba = $hpp - $harga_pembelian;
+        return view('pages.pimpinan.laporan.laporan-labarugi', [
+            'harga_pembelian' => $harga_pembelian,
+            'hpp' => $hpp,
+            'laba' => $laba,
+        ]);
+    }
+
+    public function cetakLabaRugi(Request $request)
+    {
+        $date_from = $request->date_from;
+        $date_to = $request->date_to;
+        $data = Pesanan::whereDate('created_at', '>=', $date_from)->whereDate('created_at', '<=', $date_to)->orderBy('created_at', 'ASC')->get();
+        $hpp = 0;
+        foreach ($data as $item) {
+            $hpp += $item->total_harga;
+        }
+        $stocks = Stock::whereDate('created_at', '>=', $date_from)->whereDate('created_at', '<=', $date_to)->orderBy('created_at', 'ASC')->get();
+        $harga_pembelian = 0;
+        foreach ($stocks as $item) {
+            $harga_pembelian += $item->harga_beli;
+        }
+        $laba = $hpp - $harga_pembelian;
+        return view('pages.reports.Laporan-labarugi', [
+            'harga_pembelian' => $harga_pembelian,
+            'date_from' => $date_from,
+            'date_to' => $date_to,
+            'hpp' => $hpp,
+            'laba' => $laba,
+        ]);
+    }
 }

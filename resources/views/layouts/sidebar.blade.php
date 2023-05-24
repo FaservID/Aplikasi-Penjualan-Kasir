@@ -127,6 +127,11 @@
                                 <div data-i18n="Jurnal Umum">Jurnal Umum</div>
                             </a>
                         </li>
+                        <li class="menu-item {{ request()->is('pimpinan/laporan/laba-rugi') ? 'active' : ''}}">
+                            <a href="{{route('pimpinan.pesanan.laba-rugi')}}" class="menu-link">
+                                <div data-i18n="Laba Rugi">Laba Rugi</div>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>

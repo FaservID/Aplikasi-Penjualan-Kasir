@@ -114,4 +114,8 @@ Route::middleware(['auth', 'user-access:pimpinan'])->prefix('pimpinan')->group(f
     Route::get('laporan/jurnal-umum', [LaporanController::class, 'jurnalUmum'])->name('pimpinan.pesanan.jurnal-umum');
 
     Route::post('laporan/jurnal-umum', [LaporanController::class, 'cetakjurnalUmum'])->name('pimpinan.pesanan.cetak_jurnal_umum');
+    
+    Route::get('laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('pimpinan.pesanan.laba-rugi');
+
+    Route::post('laporan/laba-rugi', [LaporanController::class, 'cetaklabaRugi'])->name('pimpinan.pesanan.cetak_laba_rugi');
 });
