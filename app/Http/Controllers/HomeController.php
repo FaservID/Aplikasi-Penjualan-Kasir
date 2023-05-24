@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
+use App\Models\DetailOrder;
+use App\Models\Kategori;
+use App\Models\Pesanan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -17,7 +22,7 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-  
+
     /**
      * Show the application dashboard.
      *
@@ -26,8 +31,8 @@ class HomeController extends Controller
     public function index(): View
     {
         return view('home');
-    } 
-  
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -35,9 +40,30 @@ class HomeController extends Controller
      */
     public function adminHome(): View
     {
-        return view('pages.admin.index');
+        $barang = Barang::all();
+        $stock = 0;
+        for ($i = 0; $i < count($barang); $i++) {
+            $stock += $barang[$i]->in_stock;
+        }
+
+        $pesanan = Pesanan::all();
+        $pemasukan = 0;
+        for ($i = 0; $i < count($pesanan); $i++) {
+            $pemasukan += $pesanan[$i]->total_harga;
+        }
+        // dd($stock);
+        $data = [
+            'barang' => Barang::count(),
+            'kategori' => Kategori::count(),
+            'terjual' => DetailOrder::count(),
+            'stock' => $stock,
+            'transaksi' => Pesanan::count(),
+            'pengguna' => User::where('type', 0)->count(),
+            'pemasukan' => $pemasukan
+        ];
+        return view('pages.admin.index', compact('data'));
     }
-  
+
     /**
      * Show the application dashboard.
      *
@@ -45,6 +71,27 @@ class HomeController extends Controller
      */
     public function pimpinanHome(): View
     {
-        return view('pages.pimpinan.index');
+        $barang = Barang::all();
+        $stock = 0;
+        for ($i = 0; $i < count($barang); $i++) {
+            $stock += $barang[$i]->in_stock;
+        }
+
+        $pesanan = Pesanan::all();
+        $pemasukan = 0;
+        for ($i = 0; $i < count($pesanan); $i++) {
+            $pemasukan += $pesanan[$i]->total_harga;
+        }
+        // dd($stock);
+        $data = [
+            'barang' => Barang::count(),
+            'kategori' => Kategori::count(),
+            'terjual' => DetailOrder::count(),
+            'stock' => $stock,
+            'transaksi' => Pesanan::count(),
+            'pengguna' => User::where('type', 0)->count(),
+            'pemasukan' => $pemasukan
+        ];
+        return view('pages.pimpinan.index', compact('data'));
     }
 }
