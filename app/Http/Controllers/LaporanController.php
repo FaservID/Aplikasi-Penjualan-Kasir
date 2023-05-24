@@ -160,8 +160,16 @@ class LaporanController extends Controller
 
     public function bukuBesar(): View
     {
+        $data = Stock::orderBy('created_at', 'ASC')->get();
+        $stocks = Stock::orderBy('created_at', 'ASC')->get();
+        $orders = Pesanan::orderBy('created_at', 'ASC')->get();
 
-        return view('pages.pimpinan.laporan.laporan-buku-besar', []);
+
+        return view('pages.pimpinan.laporan.laporan-buku-besar', [
+            'data' => $data,
+            'orders' => $orders,
+
+        ]);
     }
 
     public function cetakBukuBesar(Request $request)

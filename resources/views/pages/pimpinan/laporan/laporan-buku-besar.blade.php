@@ -32,7 +32,115 @@
         </div>
         <div class="card-body">
             <div class="table-responsive text-nowrap">
-             
+                <div class="kas">
+                    Nama Akun : Kas
+                    <table class="table table-bordered table-striped">
+                        <thead class="text-center align-middle">
+                            <tr>
+                                <th rowspan="2" class="text-center align-middle">Tanggal</th>
+                                <th rowspan="2" class="text-center align-middle">Keterangan</th>
+                                <th rowspan="2" class="text-center align-middle">Ref</th>
+                                <th rowspan="2" class="text-center align-middle">Debet</th>
+                                <th rowspan="2" class="text-center align-middle">Kredit</th>
+                                <th colspan="2" class="text-center align-middle">Saldo</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center align-middle">Debet</th>
+                                <th class="text-center align-middle">Kredit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $item)
+
+                            <tr>
+                                <td>{{\Carbon\Carbon::parse($item->created_at)->isoFormat('D MMMM YYYY')}}</td>
+                                <td>Kas</td>
+                                <td>111</td>
+                                <td></td>
+                                <td>@currency($item->harga_beli)</td>
+                                <td></td>
+                                <td>@currency($item->harga_beli)</td>
+                            </tr>
+                            @endforeach
+                            @foreach ($orders as $order)
+                            <tr>
+                                <td>{{\Carbon\Carbon::parse($order->created_at)->isoFormat('D MMMM YYYY')}}</td>
+                                <td>Kas</td>
+                                <td>111</td>
+                                <td>@currency($order->total_harga)</td>
+                                <td></td>
+                                <td>@currency($order->total_harga)</td>
+                                <td></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="penjualan mt-3">
+                    Nama Akun : Penjualan
+                    <table class="table table-bordered table-striped">
+                        <thead class="text-center align-middle">
+                            <tr>
+                                <th rowspan="2" class="text-center align-middle">Tanggal</th>
+                                <th rowspan="2" class="text-center align-middle">Keterangan</th>
+                                <th rowspan="2" class="text-center align-middle">Ref</th>
+                                <th rowspan="2" class="text-center align-middle">Debet</th>
+                                <th rowspan="2" class="text-center align-middle">Kredit</th>
+                                <th colspan="2" class="text-center align-middle">Saldo</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center align-middle">Debet</th>
+                                <th class="text-center align-middle">Kredit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($orders as $order)
+                            <tr>
+                                <td>{{\Carbon\Carbon::parse($order->created_at)->isoFormat('D MMMM YYYY')}}</td>
+                                <td>Penjualan</td>
+                                <td>411</td>
+                                <td></td>
+                                <td>@currency($order->total_harga)</td>
+                                <td></td>
+                                <td>@currency($order->total_harga)</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pembelian mt-3">
+                    Nama Akun : Pembelian
+                    <table class="table table-bordered table-striped">
+                        <thead class="text-center align-middle">
+                            <tr>
+                                <th rowspan="2" class="text-center align-middle">Tanggal</th>
+                                <th rowspan="2" class="text-center align-middle">Keterangan</th>
+                                <th rowspan="2" class="text-center align-middle">Ref</th>
+                                <th rowspan="2" class="text-center align-middle">Debet</th>
+                                <th rowspan="2" class="text-center align-middle">Kredit</th>
+                                <th colspan="2" class="text-center align-middle">Saldo</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center align-middle">Debet</th>
+                                <th class="text-center align-middle">Kredit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $item)
+
+                            <tr>
+                                <td>{{\Carbon\Carbon::parse($item->created_at)->isoFormat('D MMMM YYYY')}}</td>
+                                <td>Pembelian</td>
+                                <td>500</td>
+                                <td>@currency($item->harga_beli)</td>
+                                <td></td>
+                                <td>@currency($item->harga_beli)</td>
+                                <td></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

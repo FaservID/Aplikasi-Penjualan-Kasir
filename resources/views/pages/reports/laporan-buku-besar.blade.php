@@ -110,7 +110,7 @@
             </tbody>
         </table>
     </div>
-    <div class="kas">
+    <div class="pembelian">
         Nama Akun : Pembelian
         <table class="table table-bordered table-striped">
             <thead style="background-color:#84B0CA ;" class="text-white text-center align-middle">

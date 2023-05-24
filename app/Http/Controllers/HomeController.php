@@ -46,7 +46,7 @@ class HomeController extends Controller
             $stock += $barang[$i]->in_stock;
         }
 
-        $pesanan = Pesanan::all();
+        $pesanan = Pesanan::where('status', 'Selesai')->get();
         $pemasukan = 0;
         for ($i = 0; $i < count($pesanan); $i++) {
             $pemasukan += $pesanan[$i]->total_harga;
@@ -77,7 +77,7 @@ class HomeController extends Controller
             $stock += $barang[$i]->in_stock;
         }
 
-        $pesanan = Pesanan::all();
+        $pesanan = Pesanan::where('status', 'Selesai')->get();
         $pemasukan = 0;
         for ($i = 0; $i < count($pesanan); $i++) {
             $pemasukan += $pesanan[$i]->total_harga;

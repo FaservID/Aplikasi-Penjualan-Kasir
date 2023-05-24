@@ -225,14 +225,19 @@
 
         function addToCard(key) {
             // debugger;
-            if (listCards[key] == null) {
-                // copy product form list to list card
-                listCards[key] = JSON.parse(JSON.stringify(products[key]));
-                listCards[key].quantity = 1;
-                listCards[key].price = listCards[key].harga;
-                listCards[key].user_id = user_id
+            if(user_id == null) {
+                window.location.href ="http://127.0.0.1:8000/login"
+            } else {
+                if (listCards[key] == null) {
+                    // copy product form list to list card
+                    listCards[key] = JSON.parse(JSON.stringify(products[key]));
+                    listCards[key].quantity = 1;
+                    listCards[key].price = listCards[key].harga;
+                    listCards[key].user_id = user_id
+                }
+                reloadCard();
+
             }
-            reloadCard();
         }
 
         function reloadCard() {
