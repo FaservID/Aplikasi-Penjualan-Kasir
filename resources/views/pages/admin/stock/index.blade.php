@@ -173,7 +173,18 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-12">
-                                <label for="defaultFormControlInput" class="form-label">Harga Beli</label>
+                                <label for="defaultFormControlInput" class="form-label">Jumlah</label>
+                                <input type="number" value="{{ old('jumlah') }}" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah" id="jumlah" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />
+                                @error('jumlah')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label for="defaultFormControlInput" class="form-label">Harga Total Pembelian</label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon1">Rp.</span>
                                     <input type="text" value="{{ old('harga_beli') }}" class="form-control @error('harga_beli') is-invalid @enderror" name="harga_beli" id="harga_beli" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />
@@ -183,17 +194,6 @@
                                     </span>
                                     @enderror
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-12">
-                                <label for="defaultFormControlInput" class="form-label">Jumlah</label>
-                                <input type="number" value="{{ old('jumlah') }}" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah" id="jumlah" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />
-                                @error('jumlah')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{$message}}</strong>
-                                </span>
-                                @enderror
                             </div>
                         </div>
                         <div class="row mt-3">

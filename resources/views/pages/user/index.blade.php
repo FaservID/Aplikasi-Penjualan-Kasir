@@ -201,7 +201,7 @@
                                 <div class="text-center">
                                     <!-- Product name-->
                                     <h5 class="fw-bolder" style="font-family: 'Roboto Condensed', sans-serif;">${value.nama}</h5>
-                                    <div>${value.panjang} cm x ${value.lebar} cm</div>
+                                    <div>${value.panjang == '-' ? ' ' : value.panjang} ${value.panjang == '-' ? ' ' : 'x'} ${value.lebar == '-' ? ' ' : value.lebar} </div>
                                     <!-- Product price-->
                                 </div>
                             </div>

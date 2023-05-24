@@ -14,13 +14,19 @@ class KategoriSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('kategori')->insert(
+        DB::table('kategori')->insert([
             [
                 'nama' => 'Kasur',
                 'deskripsi' => 'Kasur',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
-        );
+            [
+                'nama' => 'Bantal',
+                'deskripsi' => 'Bantal',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+        ]);
     }
 }
