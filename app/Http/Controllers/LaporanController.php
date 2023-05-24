@@ -44,6 +44,7 @@ class LaporanController extends Controller
                 $join->on("stocks.barang_id", "=", "barang.id");
             })
             ->groupBy("barang.id")
+            ->whereNull('barang.id')
             ->whereBetween('created_at', [$date_from, $date_to])
             ->get();
 

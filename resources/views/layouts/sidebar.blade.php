@@ -103,6 +103,12 @@
 
             @elseif(auth()->user()->type === "pimpinan")
             <ul class="menu-inner py-1">
+                <li class="menu-item {{ request()->is('pimpinan/home') ? 'active' : ''}}">
+                    <a href="{{route('pimpinan.home')}}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                        <div data-i18n="Analytics">Beranda</div>
+                    </a>
+                </li>
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Menu Utama</span>
                 </li>

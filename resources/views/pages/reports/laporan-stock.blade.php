@@ -51,28 +51,48 @@
         </thead>
         <tbody>
             <?php $i=1; ?>
-            @foreach ($items as $item)
+            @foreach ($items as $key => $item)
             <tr>
                 <th scope="row" class="text-center">{{$i++}}</th>
                 <td>{{$item->nama}}</td>
                 <td class="text-center">
-
-
-                </td>
-                <td class="text-center">
-                    @foreach ($item->detailOrders as $order)
-                    @php
-                    $total = 0;
-                    $total += intVal($order->jumlah);
-                    @endphp
-                    {{$total}}
+                    <div style="display: none">
+                        {{ $in_stock = 0 }}
+                    </div>
+                    @foreach ($item->stocks as $stock)
+                    <div style="display: none">{{$in_stock = $item->in_stock - $stock->jumlah}}</div>
                     @endforeach
-                </td>
-                <td class="text-center">
+                    @if ($in_stock == 0)
+                    {{$item->in_stock}}
+                    @else
+                    {{$in_stock}}
+                    @endif
 
                 </td>
                 <td class="text-center">
-
+                    <div style="display: none">
+                        {{ $stock_masuk = 0}}
+                    </div>
+                    @foreach ($item->stocks as $stock)
+                    <div style="display: none">{{$stock_masuk += $stock->jumlah}}</div>
+                    @endforeach
+                    {{$stock_masuk}}
+                </td>
+                <td class="text-center">
+                    <div style="display: none">
+                        {{ $stock_keluar = 0 }}
+                    </div>
+                    @foreach ($item->detailOrders as $order)
+                    <div style="display: none">{{$stock_keluar += $order->jumlah}}</div>
+                    @endforeach
+                    {{$stock_keluar}}
+                </td>
+                <td class="text-center">
+                    @if ($in_stock == 0)
+                    {{ $item->in_stock + $stock_masuk - $stock_keluar }}
+                    @else
+                    {{$in_stock + $stock_masuk - $stock_keluar}}
+                    @endif
                 </td>
             </tr>
             @endforeach
