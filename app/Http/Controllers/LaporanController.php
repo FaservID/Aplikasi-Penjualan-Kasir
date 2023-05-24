@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\DetailOrder;
 use App\Models\Pesanan;
 use App\Models\Stock;
 use Illuminate\Http\Request;
@@ -59,7 +60,7 @@ class LaporanController extends Controller
             ->whereBetween('created_at', [$date_from, $date_to])
             ->get();
 
-        $items = Barang::with('stocks')->whereBetween('created_at', [$date_from, $date_to])->get();
+        $items = Barang::with('stocks', 'detailOrders')->whereBetween('created_at', [$date_from, $date_to])->get();
         $first = Barang::with('stocks')->whereBetween('created_at', [$date_from, $date_to])->orderBy('created_at', 'ASC')->first();
         // dd($first->stocks[0]->stock_awal);
         return view('pages.reports.laporan-stock', [
@@ -153,6 +154,35 @@ class LaporanController extends Controller
             'date_to' => $date_to,
             'hpp' => $hpp,
             'laba' => $laba,
+        ]);
+    }
+
+    public function bukuBesar(): View
+    {
+
+        return view('pages.pimpinan.laporan.laporan-buku-besar', []);
+    }
+
+    public function cetakBukuBesar(Request $request)
+    {
+        $date_from = $request->date_from;
+        $date_to = $request->date_to;
+        $data = Stock::whereDate('created_at', '>=', $date_from)->whereDate('created_at', '<=', $date_to)->orderBy('created_at', 'ASC')->get();
+        $stocks = Stock::whereDate('created_at', '>=', $date_from)->whereDate('created_at', '<=', $date_to)->orderBy('created_at', 'ASC')->get();
+        $orders = Pesanan::whereDate('created_at', '>=', $date_from)->whereDate('created_at', '<=', $date_to)->orderBy('created_at', 'ASC')->get();
+
+
+        // $stocks = Barang::select('barang.*')
+        //     ->leftJoin('stocks', 'barang.id', '=', 'stocks.customer_id')
+        //     ->whereNull('stocks.customer_id')->first();
+
+
+
+        return view('pages.reports.Laporan-buku-besar', [
+            'date_from' => $date_from,
+            'date_to' => $date_to,
+            'data' => $data,
+            'orders' => $orders,
         ]);
     }
 }

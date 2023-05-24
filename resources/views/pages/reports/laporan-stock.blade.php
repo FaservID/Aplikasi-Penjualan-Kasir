@@ -56,55 +56,23 @@
                 <th scope="row" class="text-center">{{$i++}}</th>
                 <td>{{$item->nama}}</td>
                 <td class="text-center">
-                    {{-- @if ($item->stocks[0] == null) --}}
-                    @foreach ($stocks as $stock)
-                    @if ($stock->barang_id == $item->id)
-                    @if ($stock->total > 0)
-                    {{$item->stocks[0]->stock_awal}}
-                    @endif
-                    @else
-                    {{-- {{$item->in_stock}} --}}
-                    @endif
-                    {{-- @break --}}
-                    @endforeach
 
-                    {{-- @else
-                    {{$item->stocks[0]->stock_awal}}
-
-                    @endif --}}
 
                 </td>
                 <td class="text-center">
-                    @foreach ($stocks as $stock)
-                    @if ($stock->barang_id == $item->id)
-                    {{$stock->jumlah}}
-                    {{-- @else
-                    - --}}
-                    @endif
-                    {{-- @break --}}
-
+                    @foreach ($item->detailOrders as $order)
+                    @php
+                    $total = 0;
+                    $total += intVal($order->jumlah);
+                    @endphp
+                    {{$total}}
                     @endforeach
                 </td>
                 <td class="text-center">
-                    @foreach ($orders as $stock)
-                    @if ($stock->barang_id == $item->id)
-                    {{$stock->jumlah_out}}
 
-                    @endif
-                    {{-- @break --}}
-
-                    @endforeach
                 </td>
                 <td class="text-center">
-                    @foreach ($stocks as $stock)
-                    @foreach ($orders as $order)
-                    @if ($stock->barang_id == $item->id && $item->id == $order->barang_id)
-                    {{($item->stocks[0]->stock_awal + $stock->jumlah) - $order->jumlah_out}}
-                    @endif
-                    @endforeach
-                    {{-- @break --}}
 
-                    @endforeach
                 </td>
             </tr>
             @endforeach

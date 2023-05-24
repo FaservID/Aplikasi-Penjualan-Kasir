@@ -118,4 +118,8 @@ Route::middleware(['auth', 'user-access:pimpinan'])->prefix('pimpinan')->group(f
     Route::get('laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('pimpinan.pesanan.laba-rugi');
 
     Route::post('laporan/laba-rugi', [LaporanController::class, 'cetaklabaRugi'])->name('pimpinan.pesanan.cetak_laba_rugi');
+
+    Route::get('laporan/buku-besar', [LaporanController::class, 'bukuBesar'])->name('pimpinan.pesanan.buku-besar');
+
+    Route::post('laporan/buku-besar', [LaporanController::class, 'cetakBukuBesar'])->name('pimpinan.pesanan.cetak_buku_besar');
 });

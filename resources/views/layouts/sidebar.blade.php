@@ -132,6 +132,11 @@
                                 <div data-i18n="Laba Rugi">Laba Rugi</div>
                             </a>
                         </li>
+                        <li class="menu-item {{ request()->is('pimpinan/laporan/buku-besar') ? 'active' : ''}}">
+                            <a href="{{route('pimpinan.pesanan.buku-besar')}}" class="menu-link">
+                                <div data-i18n="Buku Besar">Buku Besar</div>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
