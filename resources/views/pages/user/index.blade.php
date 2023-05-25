@@ -18,7 +18,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top border-bottom">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="/">Toko<span style="font-weight: bold">Kasur</span></a>
+            <a class="navbar-brand" href="/" style="font-weight: bold">CV. KASUR ASSSAHAZ</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -140,17 +140,38 @@
                 </div> 
         </div>  --}}
     </header>
+    <section class="py-5 my-5" style="background-color: whitesmoke">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-4 d-flex justify-content-end ">
+                    <div class="p-2"><img class="img-fluid img-thumbnail" src="{{asset('fe/assets/welcome.jpeg')}}" alt="welcome" width="300" /></div>
+                </div>
+                <div class="col-lg-8 d-flex justify-content-start">
+                    <div class="p-2">
+                        <h2 class="display-4">Tentang Kami!</h2>
+                        <p style="text-align:justify; line-spacing:2px">
+                            <div style="word-spacing:5px">
+                                CV. Kasur Asssahaz adalah destinasi utama untuk kebutuhan tidur berkualitas tinggi di kota Palembang. Dengan pengalaman lebih dari 10 tahun dalam industri ini, toko ini telah membangun reputasi yang solid sebagai penyedia kasur terbaik dengan pelayanan yang unggul.
+                            </div>
+                            <div style="word-spacing:5px;" class="py-2">
+                                CV. Kasur Asssahaz menawarkan berbagai macam kasur dengan kualitas terbaik dan pilihan desain yang beragam. Setiap produk yang dijual di toko ini dipilih dengan cermat untuk memastikan kenyamanan dan dukungan yang optimal bagi pelanggan. Dari kasur busa memori yang ergonomis hingga kasur pegas yang kokoh, toko ini memiliki solusi tidur yang sesuai untuk setiap preferensi individu.
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Section-->
-    <section class="py-2" style="background-color: whitesmoke">
+    <section class="py-2 mt-5">
         <div class="container px-4 px-lg-5 mt-0">
             <div class="site-section-heading text-center py-4">
-                <h2 style="font-family: 'Fira Sans', sans-serif; font-weight:bold">Our Products</h2>
+                <h2 style="font-family: 'Fira Sans', sans-serif; font-weight:bold">Produk Kami</h2>
             </div>
             <div class="col-md-12">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-lg-4 d-flex justify-content-center product">
                 </div>
             </div>
-        </div>
         </div>
     </section>
     <div class="listCard">
