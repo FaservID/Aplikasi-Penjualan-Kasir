@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Pimpinan Home')
+@section('title', 'owner Home')
 
 
 @section('content')

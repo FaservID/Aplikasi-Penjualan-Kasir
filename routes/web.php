@@ -99,27 +99,27 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
 All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
-Route::middleware(['auth', 'user-access:pimpinan'])->prefix('pimpinan')->group(function () {
+Route::middleware(['auth', 'user-access:owner'])->prefix('owner')->group(function () {
 
-    Route::get('/home', [HomeController::class, 'pimpinanHome'])->name('pimpinan.home');
+    Route::get('/home', [HomeController::class, 'ownerHome'])->name('owner.home');
 
-    Route::get('laporan/stock', [LaporanController::class, 'laporanStock'])->name('pimpinan.pesanan.laporan_stock');
+    Route::get('laporan/stock', [LaporanController::class, 'laporanStock'])->name('owner.pesanan.laporan_stock');
 
-    Route::post('laporan/stock', [LaporanController::class, 'cetakLaporanStock'])->name('pimpinan.pesanan.cetak_laporan_stock');
+    Route::post('laporan/stock', [LaporanController::class, 'cetakLaporanStock'])->name('owner.pesanan.cetak_laporan_stock');
 
-    Route::get('laporan/transaksi', [LaporanController::class, 'laporanTransaksi'])->name('pimpinan.pesanan.laporan_transaksi');
+    Route::get('laporan/transaksi', [LaporanController::class, 'laporanTransaksi'])->name('owner.pesanan.laporan_transaksi');
 
-    Route::post('laporan/transaksi', [LaporanController::class, 'cetakLaporanTransaksi'])->name('pimpinan.pesanan.cetak_laporan_transaksi');
+    Route::post('laporan/transaksi', [LaporanController::class, 'cetakLaporanTransaksi'])->name('owner.pesanan.cetak_laporan_transaksi');
 
-    Route::get('laporan/jurnal-umum', [LaporanController::class, 'jurnalUmum'])->name('pimpinan.pesanan.jurnal-umum');
+    Route::get('laporan/jurnal-umum', [LaporanController::class, 'jurnalUmum'])->name('owner.pesanan.jurnal-umum');
 
-    Route::post('laporan/jurnal-umum', [LaporanController::class, 'cetakjurnalUmum'])->name('pimpinan.pesanan.cetak_jurnal_umum');
-    
-    Route::get('laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('pimpinan.pesanan.laba-rugi');
+    Route::post('laporan/jurnal-umum', [LaporanController::class, 'cetakjurnalUmum'])->name('owner.pesanan.cetak_jurnal_umum');
 
-    Route::post('laporan/laba-rugi', [LaporanController::class, 'cetaklabaRugi'])->name('pimpinan.pesanan.cetak_laba_rugi');
+    Route::get('laporan/laba-rugi', [LaporanController::class, 'labaRugi'])->name('owner.pesanan.laba-rugi');
 
-    Route::get('laporan/buku-besar', [LaporanController::class, 'bukuBesar'])->name('pimpinan.pesanan.buku-besar');
+    Route::post('laporan/laba-rugi', [LaporanController::class, 'cetaklabaRugi'])->name('owner.pesanan.cetak_laba_rugi');
 
-    Route::post('laporan/buku-besar', [LaporanController::class, 'cetakBukuBesar'])->name('pimpinan.pesanan.cetak_buku_besar');
+    Route::get('laporan/buku-besar', [LaporanController::class, 'bukuBesar'])->name('owner.pesanan.buku-besar');
+
+    Route::post('laporan/buku-besar', [LaporanController::class, 'cetakBukuBesar'])->name('owner.pesanan.cetak_buku_besar');
 });

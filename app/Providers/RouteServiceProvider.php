@@ -19,7 +19,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/';
     public const ADMINHOME = '/admin/home';
-    public const PIMPINANHOME = '/pimpinan/home';
+    public const ownerHOME = '/owner/home';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

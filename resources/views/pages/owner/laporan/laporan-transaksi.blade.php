@@ -79,12 +79,12 @@
                                                                     @foreach ($order->detailOrders as $item)
                                                                     <tr>
                                                                         <td>{{$i++}}</td>
-                                                                        <th><img src="{{asset('product_image')}}/{{$item->barang->foto}}" width="100" class="img img-fluid"></th>
-                                                                        <td>{{$item->barang->nama}}</td>
-                                                                        <td>{{$item->barang->tipe}}</td>
-                                                                        <td>{{$item->barang->panjang}} x {{$item->barang->lebar}}</td>
-                                                                        <td>{{$item->jumlah}}</td>
-                                                                        <td>@currency($item->harga)</td>
+                                                                        <th><img src="{{asset('product_image')}}/{{$item?->barang?->foto}}" width="100" class="img img-fluid"></th>
+                                                                        <td>{{$item?->barang?->nama}}</td>
+                                                                        <td>{{$item?->barang?->tipe}}</td>
+                                                                        <td>{{$item?->barang?->panjang}} x {{$item?->barang?->lebar}}</td>
+                                                                        <td>{{$item?->jumlah}}</td>
+                                                                        <td>@currency($item?->harga)</td>
                                                                     </tr>
                                                                     @endforeach
                                                                 </tbody>
@@ -92,7 +92,7 @@
                                                                     <tr>
                                                                         <th>#</th>
                                                                         <th colspan="5">Total Harga</th>
-                                                                        <th>@currency($item->pesanan->total_harga)</th>
+                                                                        <th>@currency($item?->pesanan?->total_harga)</th>
                                                                     </tr>
                                                                 </tfoot>
                                                             </table>
@@ -105,9 +105,9 @@
                                             </div>
                                         </div>
                                     </div>
-    
-    
-    
+
+
+
                                 </td>
                                 <td>@currency($order->total_harga)</td>
                                 <td>
@@ -120,7 +120,7 @@
                                     @endif
                                 </td>
                                 <td>{{\Carbon\Carbon::parse($order->created_at)->isoFormat('D MMMM YYYY')}}</td>
-    
+
                                 @endforeach
                         </tbody>
                         <tfoot>
@@ -146,7 +146,7 @@
         <div class="modal fade" id="laporan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="{{route('pimpinan.pesanan.cetak_laporan_transaksi')}}" method="POST">
+                    <form action="{{route('owner.pesanan.cetak_laporan_transaksi')}}" method="POST">
                         @csrf
                         @method('POST')
                         <div class="modal-header">

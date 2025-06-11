@@ -28,7 +28,7 @@
 <body>
     <div class="col-12">
         <div class="row mb-0 text-center">
-            <h1 class="display-6" style="font-weight: bold; text-transform: uppercase">CV. Kasur Asssahaz</h1>
+            <h1 class="display-6" style="font-weight: bold; text-transform: uppercase">Optik Reka Jaya</h1>
             <h5>Laporan Stock Barang</h5>
             <div>Pertanggal {{\Carbon\Carbon::parse($date_from)->isoFormat('D MMMM YYYY')}} - {{\Carbon\Carbon::parse($date_to)->isoFormat('D MMMM YYYY')}}</div>
         </div>

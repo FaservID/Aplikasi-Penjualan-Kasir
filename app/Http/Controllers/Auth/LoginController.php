@@ -41,20 +41,20 @@ class LoginController extends Controller
     }
 
     public function login(Request $request): RedirectResponse
-    {   
+    {
         $input = $request->all();
-     
+
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
         ]);
-     
+
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             if (auth()->user()->type == 'admin') {
                 return redirect()->route('admin.home');
-            }else if (auth()->user()->type == 'pimpinan') {
-                return redirect()->route('pimpinan.home');
+            }else if (auth()->user()->type == 'owner') {
+                return redirect()->route('owner.home');
             }else{
                 return redirect()->route('fe.index');
             }
@@ -62,6 +62,6 @@ class LoginController extends Controller
             return redirect()->route('login')
                 ->with('error','Email-Address And Password Are Wrong.');
         }
-          
+
     }
 }

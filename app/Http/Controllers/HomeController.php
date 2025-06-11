@@ -69,7 +69,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function pimpinanHome(): View
+    public function ownerHome(): View
     {
         $barang = Barang::all();
         $stock = 0;
@@ -92,6 +92,6 @@ class HomeController extends Controller
             'pengguna' => User::where('type', 0)->count(),
             'pemasukan' => $pemasukan
         ];
-        return view('pages.pimpinan.index', compact('data'));
+        return view('pages.owner.index', compact('data'));
     }
 }

@@ -24,8 +24,6 @@ class CreateBarangRequest extends FormRequest
         return [
             'nama_barang' => 'required',
             'tipe'  => 'required',
-            'panjang'  => 'required',
-            'lebar'  => 'required',
             'harga'  => 'required',
             'in_stock'  => 'required',
             'keterangan'  => 'required',

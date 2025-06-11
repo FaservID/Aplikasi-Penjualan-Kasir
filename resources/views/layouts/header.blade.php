@@ -12,7 +12,7 @@
                   <div class="navbar-nav align-items-center">
                       <div class="nav-item d-flex align-items-center">
                         <div class="text-muted" style="font-weight: bold">
-                            CV. Kasur Asssahaz
+                            Optik Reka Jaya
                         </div>
                           {{-- <i class="bx bx-search fs-4 lh-0"></i> --}}
                           {{-- <input type="text" class="form-control border-0 shadow-none" placeholder="Pencarian .." aria-label="Searchsneat." /> --}}
@@ -44,8 +44,8 @@
                                               <small class="text-muted">
                                                   @if(Auth::user()->type === "admin")
                                                   Admin
-                                                  @elseif(Auth::user()->type === "pimpinan")
-                                                  Pimpinan
+                                                  @elseif(Auth::user()->type === "owner")
+                                                  owner
                                                   @else
                                                   User
                                                   @endif

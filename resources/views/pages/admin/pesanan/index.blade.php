@@ -79,12 +79,12 @@
                                                                 @foreach ($order->detailOrders as $item)
                                                                 <tr>
                                                                     <td>{{$i++}}</td>
-                                                                    <th><img src="{{asset('product_image')}}/{{$item->barang->foto}}" width="100" class="img img-fluid"></th>
-                                                                    <td>{{$item->barang->nama}}</td>
-                                                                    <td>{{$item->barang->tipe}}</td>
-                                                                    <td>{{$item->barang->panjang}} x {{$item->barang->lebar}}</td>
-                                                                    <td>{{$item->jumlah}}</td>
-                                                                    <td>@currency($item->harga)</td>
+                                                                    <th><img src="{{asset('product_image')}}/{{$item?->barang?->foto}}" width="100" class="img img-fluid"></th>
+                                                                    <td>{{$item?->barang?->nama}}</td>
+                                                                    <td>{{$item?->barang?->tipe}}</td>
+                                                                    <td>{{$item?->barang?->panjang}} x {{$item?->barang?->lebar}}</td>
+                                                                    <td>{{$item?->jumlah}}</td>
+                                                                    <td>@currency($item?->harga)</td>
                                                                 </tr>
                                                                 @endforeach
                                                             </tbody>

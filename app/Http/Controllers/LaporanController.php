@@ -15,7 +15,7 @@ class LaporanController extends Controller
 {
     public function laporanStock(): View
     {
-        return view('pages.pimpinan.laporan.laporan-stock', [
+        return view('pages.owner.laporan.laporan-stock', [
             'stocks' => Stock::with('barang')->orderBy('created_at', 'DESC')->get(),
         ]);
     }
@@ -34,7 +34,7 @@ class LaporanController extends Controller
 
         $stocks = DB::table("barang")
             // ->select("barang.*")
-            ->join(DB::raw("(SELECT 
+            ->join(DB::raw("(SELECT
             stocks.barang_id,
             SUM(stocks.jumlah) as jumlah,
             Count(*) as total
@@ -49,7 +49,7 @@ class LaporanController extends Controller
             ->get();
 
         $orders = DB::table("barang")
-            ->join(DB::raw("(SELECT 
+            ->join(DB::raw("(SELECT
             detail_pesanan.barang_id,
             SUM(detail_pesanan.jumlah) as jumlah_out
             FROM detail_pesanan
@@ -76,7 +76,7 @@ class LaporanController extends Controller
 
     public function laporanTransaksi(): View
     {
-        return view('pages.pimpinan.laporan.laporan-transaksi', [
+        return view('pages.owner.laporan.laporan-transaksi', [
             'transactions' => Pesanan::with('user', 'barang', 'detailOrders')->where('status', 'Selesai')->orderBy('id', 'DESC')->get(),
         ]);
     }
@@ -92,7 +92,7 @@ class LaporanController extends Controller
 
     public function jurnalUmum(): View
     {
-        return view('pages.pimpinan.laporan.jurnal-umum', [
+        return view('pages.owner.laporan.jurnal-umum', [
             'data' => Stock::orderBy('created_at', 'ASC')->get(),
         ]);
     }
@@ -127,7 +127,7 @@ class LaporanController extends Controller
             $harga_pembelian += $item->harga_beli;
         }
         $laba = $hpp - $harga_pembelian;
-        return view('pages.pimpinan.laporan.laporan-labarugi', [
+        return view('pages.owner.laporan.laporan-labarugi', [
             'harga_pembelian' => $harga_pembelian,
             'hpp' => $hpp,
             'laba' => $laba,
@@ -165,7 +165,7 @@ class LaporanController extends Controller
         $orders = Pesanan::orderBy('created_at', 'ASC')->get();
 
 
-        return view('pages.pimpinan.laporan.laporan-buku-besar', [
+        return view('pages.owner.laporan.laporan-buku-besar', [
             'data' => $data,
             'orders' => $orders,
 
