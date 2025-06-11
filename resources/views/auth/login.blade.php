@@ -76,15 +76,17 @@
               <!-- Logo -->
               <div class="app-brand justify-content-center flex-column">
                 <a href="#" class="app-brand-link gap-2">
-                  <span class="app-brand-text demo text-body fw-bolder mt-3 text-uppercase">Optik Reka Jaya</span>
+                  <span class="app-brand-text demo text-body fw-bolder mt-3 text-uppercase">CV. Kasur Asssahaz</span>
                 </a>
                 <p class="mt-2">Please sign-in to your account👋</p>
               </div>
-                @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        {{ session('error') }}
-                    </div>
-                @endif
+              @if(session('error'))
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                  {{session('error')}}
+              </div>
+              @endif
+              <!-- /Logo -->
+              {{-- <h4 class="mb-2">Welcome to</h4> --}}
 
               <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
                 @csrf
@@ -127,7 +129,7 @@
               </form>
               <p class="text-center">
                 <span>Tidak Punya Akun?</span>
-                <a href="{{ route('register') }}">
+                <a href="{{route('register')}}">
                   <span>Buat Akun</span>
                 </a>
               </p>

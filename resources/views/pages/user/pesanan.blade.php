@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Optik Reka Jaya</title>
+    <title>Toko Kasur</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -43,7 +43,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top border-bottom mb-5">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="/" style="font-weight: bold">Optik Reka Jaya</a>
+            <a class="navbar-brand" href="/" style="font-weight: bold">CV. KASUR ASSSAHAZ</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -130,7 +130,7 @@
                                                                             <th>Gambar</th>
                                                                             <th>Nama Barang</th>
                                                                             <th>Tipe</th>
-                                                                            <th>Spesifikasi</th>
+                                                                            <th>Ukuran</th>
                                                                             <th>Jumlah</th>
                                                                             <th>Harga</th>
                                                                         </tr>
@@ -140,12 +140,12 @@
                                                                         @foreach ($order->detailOrders as $item)
                                                                         <tr>
                                                                             <td>{{$i++}}</td>
-                                                                            <th><img src="{{asset('product_image')}}/{{$item?->barang?->foto}}" width="100" class="img img-fluid"></th>
-                                                                            <td>{{$item?->barang?->nama}}</td>
-                                                                            <td>{{$item?->barang?->tipe}}</td>
-                                                                            <td>{{$item?->barang?->keterangan}}</td>
-                                                                            <td>{{$item?->jumlah}}</td>
-                                                                            <td>@currency($item?->harga)</td>
+                                                                            <th><img src="{{asset('product_image')}}/{{$item->barang->foto}}" width="100" class="img img-fluid"></th>
+                                                                            <td>{{$item->barang->nama}}</td>
+                                                                            <td>{{$item->barang->tipe}}</td>
+                                                                            <td>{{$item->barang->panjang}} x {{$item->barang->lebar}}</td>
+                                                                            <td>{{$item->jumlah}}</td>
+                                                                            <td>@currency($item->harga)</td>
                                                                         </tr>
                                                                         @endforeach
                                                                     </tbody>
@@ -391,7 +391,7 @@
     <footer class="py-5 bg-dark footer mt-5">
         <div class="container">
             <p class="m-0 text-center text-white">
-                Copyright &copy; Optik Reka Jaya 2023
+                Copyright &copy; CV. Kasur Asssahaz 2023
             </p>
         </div>
     </footer>
@@ -434,6 +434,6 @@
             localStorage.clear();
         }
     </script>
-
+    
 </body>
 </html>

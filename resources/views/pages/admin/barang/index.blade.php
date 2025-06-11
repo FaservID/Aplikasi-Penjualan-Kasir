@@ -34,9 +34,10 @@
             <table id="example" class="display table table-bordered py-3 table-responsive">
                 <thead>
                     <tr>
-                        <th style="width: 2%">#</th>
+                        <th>#</th>
                         <th>Nama</th>
                         <th>Tipe</th>
+                        <th>Ukuran</th>
                         <th>Harga</th>
                         <th>In Stock</th>
                         <th>Stock Terjual</th>
@@ -51,6 +52,7 @@
                         <td>{{$i++}}</td>
                         <td>{{$item->nama}}</td>
                         <td>{{$item->tipe}}</td>
+                        <td>{{$item->panjang}} x {{$item->lebar}}</td>
                         <td>@currency($item->harga)</td>
                         <td>{{$item->in_stock}}</td>
                         <td>{{$item->sell_stock}}</td>
@@ -72,7 +74,7 @@
                             </div>
                         </td>
                     </tr>
-
+                    
                     @endforeach
                 </tbody>
                 <tfoot>
@@ -80,6 +82,7 @@
                         <th>#</th>
                         <th>Nama</th>
                         <th>Tipe</th>
+                        <th>Ukuran</th>
                         <th>Harga</th>
                         <th>In Stock</th>
                         <th>Stock Terjual</th>

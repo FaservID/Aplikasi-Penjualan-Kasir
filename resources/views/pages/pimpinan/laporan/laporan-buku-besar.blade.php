@@ -150,7 +150,7 @@
     <div class="modal fade" id="laporan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="{{route('owner.pesanan.cetak_buku_besar')}}" method="POST">
+                <form action="{{route('pimpinan.pesanan.cetak_buku_besar')}}" method="POST">
                     @csrf
                     @method('POST')
                     <div class="modal-header">

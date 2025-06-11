@@ -38,7 +38,7 @@
 <body>
     <div class="col-12">
         <div class="row mb-0 text-center">
-            <h1 class="display-6" style="font-weight: bold; text-transform: uppercase">Optik Reka Jaya</h1>
+            <h1 class="display-6" style="font-weight: bold; text-transform: uppercase">CV. Kasur Asssahaz</h1>
             <h5>Laporan Transaksi</h5>
             <div>Pertanggal {{\Carbon\Carbon::parse($date_from)->isoFormat('D MMMM YYYY')}} - {{\Carbon\Carbon::parse($date_to)->isoFormat('D MMMM YYYY')}}</div>
         </div>
@@ -62,12 +62,12 @@
             <tr>
                 <th scope="row">{{$i++}}</th>
                 <td>{{$transaction->order_id}}</td>
-                <td>{{$transaction->user?->name}}</td>
+                <td>{{$transaction->user->name}}</td>
                 <td>
                     <?php $x=1; ?>
                     @foreach ($transaction->detailOrders as $item)
                     <ul>
-                        <li>{{$x++}}. {{$item?->barang?->nama}}</li>
+                        <li>{{$x++}}. {{$item->barang->nama}}</li>
                     </ul>
                     @endforeach
                 </td>
@@ -75,7 +75,7 @@
                     <?php $y=1; ?>
                     @foreach ($transaction->detailOrders as $item)
                     <ul>
-                        <li>{{$y++}}. Rp. @currency($item?->barang?->harga)</li>
+                        <li>{{$y++}}. Rp. @currency($item->barang->harga)</li>
                     </ul>
                     @endforeach
                 </td>

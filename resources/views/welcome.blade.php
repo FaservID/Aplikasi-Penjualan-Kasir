@@ -8,7 +8,7 @@
         />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Optik Reka Jaya</title>
+        <title>Toko Kasur</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="#!"
-                    >Oktik<span style="font-weight: bold">Reka Jaya</span></a
+                    >Toko<span style="font-weight: bold">Kasur</span></a
                 >
                 <button
                     class="navbar-toggler"

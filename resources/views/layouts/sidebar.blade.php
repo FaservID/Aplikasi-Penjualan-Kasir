@@ -4,9 +4,9 @@
             <div class="app-brand demo">
                 <a href="index.html" class="app-brand-link">
                     <!-- <span class="app-brand-logo demo">
-
+                
               </span> -->
-                    <span class="app-brand-text demo menu-text fw-bolder ms-2" style="text-transform: uppercase">Reka Jaya</span>
+                    <span class="app-brand-text demo menu-text fw-bolder ms-2">CV. ASSSAHAZ</span>
                 </a>
 
                 <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -101,10 +101,10 @@
                 <!-- END Menu Lainnya -->
             </ul>
 
-            @elseif(auth()->user()->type === "owner")
+            @elseif(auth()->user()->type === "pimpinan")
             <ul class="menu-inner py-1">
-                <li class="menu-item {{ request()->is('owner/home') ? 'active' : ''}}">
-                    <a href="{{route('owner.home')}}" class="menu-link">
+                <li class="menu-item {{ request()->is('pimpinan/home') ? 'active' : ''}}">
+                    <a href="{{route('pimpinan.home')}}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-home-circle"></i>
                         <div data-i18n="Analytics">Beranda</div>
                     </a>
@@ -112,37 +112,37 @@
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Menu Utama</span>
                 </li>
-                <li class="menu-item {{ request()->is('owner/laporan*') ? 'active open' : ''}}">
+                <li class="menu-item {{ request()->is('pimpinan/laporan*') ? 'active open' : ''}}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bxs-report"></i>
                         <div data-i18n="laporan">Laporan</div>
                     </a>
                     <ul class="menu-sub">
-                        <li class="menu-item {{ request()->is('owner/laporan/stock') ? 'active' : ''}}">
-                            <a href="{{route('owner.pesanan.laporan_stock')}}" class="menu-link">
+                        <li class="menu-item {{ request()->is('pimpinan/laporan/stock') ? 'active' : ''}}">
+                            <a href="{{route('pimpinan.pesanan.laporan_stock')}}" class="menu-link">
                                 <div data-i18n="laporan penjualan">Laporan Stock</div>
                             </a>
                         </li>
-                        <li class="menu-item {{ request()->is('owner/laporan/transaksi') ? 'active' : ''}}">
-                            <a href="{{route('owner.pesanan.laporan_transaksi')}}" class="menu-link">
+                        <li class="menu-item {{ request()->is('pimpinan/laporan/transaksi') ? 'active' : ''}}">
+                            <a href="{{route('pimpinan.pesanan.laporan_transaksi')}}" class="menu-link">
                                 <div data-i18n="laporan stock">Laporan Transaksi</div>
                             </a>
                         </li>
-                        {{-- <li class="menu-item {{ request()->is('owner/laporan/jurnal-umum') ? 'active' : ''}}">
-                            <a href="{{route('owner.pesanan.jurnal-umum')}}" class="menu-link">
+                        <li class="menu-item {{ request()->is('pimpinan/laporan/jurnal-umum') ? 'active' : ''}}">
+                            <a href="{{route('pimpinan.pesanan.jurnal-umum')}}" class="menu-link">
                                 <div data-i18n="Jurnal Umum">Jurnal Umum</div>
                             </a>
                         </li>
-                        <li class="menu-item {{ request()->is('owner/laporan/laba-rugi') ? 'active' : ''}}">
-                            <a href="{{route('owner.pesanan.laba-rugi')}}" class="menu-link">
+                        <li class="menu-item {{ request()->is('pimpinan/laporan/laba-rugi') ? 'active' : ''}}">
+                            <a href="{{route('pimpinan.pesanan.laba-rugi')}}" class="menu-link">
                                 <div data-i18n="Laba Rugi">Laba Rugi</div>
                             </a>
                         </li>
-                        <li class="menu-item {{ request()->is('owner/laporan/buku-besar') ? 'active' : ''}}">
-                            <a href="{{route('owner.pesanan.buku-besar')}}" class="menu-link">
+                        <li class="menu-item {{ request()->is('pimpinan/laporan/buku-besar') ? 'active' : ''}}">
+                            <a href="{{route('pimpinan.pesanan.buku-besar')}}" class="menu-link">
                                 <div data-i18n="Buku Besar">Buku Besar</div>
                             </a>
-                        </li> --}}
+                        </li>
                     </ul>
                 </li>
             </ul>

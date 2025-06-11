@@ -282,7 +282,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `phone_number`, `type`, `picture`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Udil Surbakti', 'admin@gmail.com', NULL, '$2y$10$Iq80XlVMFxRn0To6vvSZfeNactkns7akLYhodAXpPnZpSIedSih6m', '082178526861', 1, 'default.png', NULL, '2023-05-24 01:25:59', '2023-05-24 01:25:59'),
-(2, 'Jalaludin', 'owner@gmail.com', NULL, '$2y$10$mZDj4AVPx1f2w3v1rm7HxOXAhIH3bOaJmi7BswjALpMCDKO2cW7Hi', '0821312312312', 2, 'default.png', NULL, '2023-05-24 01:26:28', '2023-05-24 01:26:28'),
+(2, 'Jalaludin', 'pimpinan@gmail.com', NULL, '$2y$10$mZDj4AVPx1f2w3v1rm7HxOXAhIH3bOaJmi7BswjALpMCDKO2cW7Hi', '0821312312312', 2, 'default.png', NULL, '2023-05-24 01:26:28', '2023-05-24 01:26:28'),
 (3, 'Inggih Rembang Setyo', 'inggih@faserv.id', NULL, '$2y$10$SHbidRNri/i6kZTZdxWgZexdPZsR.bOC5lEae728Xf.5Qv6QKHGzy', '04155551212', 0, 'default.png', NULL, '2023-05-24 01:30:52', '2023-05-24 01:30:52'),
 (4, 'rendi', 'renditriandi17@gmail.com', NULL, '$2y$10$Y.S63tB4w98fCjc1XuaxQuXdcObZGTBFrcH8b2M8SJk8vjCT0Oadq', '04155551212', 0, 'default.png', NULL, '2023-05-24 01:32:41', '2023-05-24 01:32:41');
 

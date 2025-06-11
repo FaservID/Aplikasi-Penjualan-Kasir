@@ -76,7 +76,7 @@
               <!-- Logo -->
               <div class="app-brand justify-content-center flex-column">
                 <a href="#" class="app-brand-link gap-2">
-                  <span class="app-brand-text demo text-body fw-bolder mt-3 text-uppercase">Optik Reka Jaya</span>
+                  <span class="app-brand-text demo text-body fw-bolder mt-3 text-uppercase">CV. Kasur Asssahaz</span>
                 </a>
                 <p class="mt-2">Please register your account👋</p>
               </div>

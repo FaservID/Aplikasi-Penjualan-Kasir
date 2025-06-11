@@ -38,7 +38,6 @@ class BarangController extends Controller
      */
     public function store(CreateBarangRequest $request)
     {
-        // dd($request->all());
         if ($request->file('foto') != null) {
             $file = $request->file('foto');
             $extension = $file->getClientOriginalExtension();
@@ -54,6 +53,8 @@ class BarangController extends Controller
             'nama' => $request->nama_barang,
             'tipe'  => $request->tipe,
             'slug' => $slug,
+            'panjang'  => $request->panjang,
+            'lebar'  => $request->lebar,
             'harga'  => $request->harga,
             'in_stock'  => $request->in_stock,
             'keterangan'  => $request->keterangan,
@@ -93,7 +94,7 @@ class BarangController extends Controller
     {
         $filename = $barang->foto;
 
-        //cek apakah ada file yang diupload
+        //cek apakah ada file yang diupload 
         if ($request->file('foto') != null) {
             $file = $request->file('foto');
             $extension = $file->getClientOriginalExtension();
@@ -108,6 +109,8 @@ class BarangController extends Controller
         $data = [
             'nama' => $request->nama_barang,
             'tipe'  => $request->tipe,
+            'panjang'  => $request->panjang,
+            'lebar'  => $request->lebar,
             'harga'  => $request->harga,
             'in_stock'  => $request->in_stock,
             'keterangan'  => $request->keterangan,

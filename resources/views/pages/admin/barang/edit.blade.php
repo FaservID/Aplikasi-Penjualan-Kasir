@@ -26,10 +26,28 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-12">
+                            <div class="col-md-4">
                                 <label for="defaultFormControlInput" class="form-label">Tipe</label>
                                 <input type="text" value="{{$barang->tipe}}" class="form-control @error('tipe') is-invalid @enderror" name="tipe" id="tipe" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />
                                 @error('tipe')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-4">
+                                <label for="defaultFormControlInput" class="form-label">Panjang</label>
+                                <input type="text" value="{{ $barang->panjang }}" class="form-control @error('panjang') is-invalid @enderror" name="panjang" id="panjang" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />
+                                @error('panjang')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-4">
+                                <label for="defaultFormControlInput" class="form-label">Lebar</label>
+                                <input type="text" value="{{ $barang->lebar }}" class="form-control @error('lebar') is-invalid @enderror" name="lebar" id="lebar" {{-- placeholder="John Doe" --}} aria-describedby="defaultFormControlHelp" />
+                                @error('lebar')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{$message}}</strong>
                                 </span>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Optik Reka Jaya</title>
+    <title>Toko Kasur</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -152,7 +152,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top border-bottom mb-5">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="/" style="font-weight: bold">Optik Reka Jaya</a>
+            <a class="navbar-brand" href="/" style="font-weight: bold">CV. KASUR ASSSAHAZ</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -306,7 +306,7 @@
     <footer class="py-5 bg-dark mt-5">
         <div class="container">
             <p class="m-0 text-center text-white">
-                Copyright &copy; Optik Reka Jaya 2023
+                Copyright &copy; CV. Kasur Asssahaz 2023
             </p>
         </div>
     </footer>
@@ -373,7 +373,7 @@
                             <figure class="itemside align-items-center">
                                 <div class="aside"><img src="http://127.0.0.1:8000/product_image/${value.foto}" class="img-sm" width="200"></div>
                                 <figcaption class="info"> <a href="#" class="title text-dark" data-abc="true">${value.nama}</a>
-                                    <p class="text-muted small">Tipe: ${value.tipe} <br> Keterangan: ${value.keterangan}</p>
+                                    <p class="text-muted small">Tipe: ${value.tipe} <br> Ukuran: ${value.panjang} cm x ${value.lebar} cm</p>
                                 </figcaption>
                             </figure>
                         </td>
